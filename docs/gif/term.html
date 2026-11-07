@@ -6,7 +6,7 @@ html,body{margin:0;background:#1b1b19}
 #o{flex:1;padding:12px 18px;white-space:pre;overflow:hidden}
 .p{color:#7fb59f}.call{color:#9fc6e8}.resp{color:#e7e5dd}.user{color:#e3c27d}.h{color:#fff;font-weight:600}.dim{color:#8b897f}.sim{color:#e3c27d}
 .c::after{content:"▍";color:#8b897f}
-</style></head><body><div class="w"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">cloud-brain — npm run demo</span></div><div id="o"></div></div>
+</style></head><body><div class="w"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">cloud-brain: npm run demo</span></div><div id="o"></div></div>
 <script>
 const o=document.getElementById('o'),sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function cls(l){if(/^\s*>/.test(l))return'call';if(/^\s*</.test(l))return /SIMULATED|Not pulled/.test(l)?'sim':'resp';if(/^\s*user:/.test(l))return'user';if(/^\d\./.test(l)||/^Cloud Brain demo/.test(l))return'h';return'dim'}

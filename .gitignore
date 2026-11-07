@@ -3,5 +3,4 @@ node_modules
 dist
 coverage
 *.log
-outputs
 .DS_Store

@@ -31,7 +31,7 @@ export const DEFAULT_TOOLS = [
   {
     name: "cloud_brain_feedback",
     description:
-      "Record whether a paid pull helped, using its receipt id. Feedback moves the contributor's reputation, which affects ranking and price.",
+      "Record whether a paid pull helped, using its receipt id. Feedback moves the contributor's reputation, which affects their price.",
     inputSchema: {
       type: "object",
       properties: {

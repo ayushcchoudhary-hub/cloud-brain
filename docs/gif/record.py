@@ -1,5 +1,5 @@
 """Record an HTML replay page into an MP4 + GIF.
-usage: python3 record.py script.json out_basename
+usage: python3 record.py script.json out_basename [page.html]  (default chat.html)
 """
 import json, subprocess, sys, time, pathlib, shutil
 from playwright.sync_api import sync_playwright

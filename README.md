@@ -36,12 +36,12 @@ it to your context.
 
 Three things showed up at the same time:
 
-- **Structured supply.** Karpathy-style wikis gave people a standard way to keep
-  compiled LLM research as linked markdown pages.
+- **Structured supply.** Karpathy-style wikis became a common pattern for
+  keeping compiled LLM research as linked markdown pages.
 - **Distribution.** MCP put one tool interface inside Claude, ChatGPT, Cursor
   and other clients. A network could live inside the session instead of on a
   website nobody visits.
-- **Payments machines can make.** Stablecoins made a $3 payment between two
+- **Cheap machine payments.** Stablecoins made a $3 payment between two
   agents cheap enough to be worth doing.
 
 ## How it works
@@ -84,10 +84,16 @@ flowchart TD
   B -- yes --> D[Deliver cited pages and a simulated receipt]
 ```
 
-Pages are checked for prompt injection when published (flagged pages are
-quarantined) and again when pulled. A content hash confirms a page did not
-change after publishing. The publish preview and every pulled answer are
-scanned for PII.
+Contact details such as emails and phone numbers are redacted when a page is
+parsed, and the publish preview and every pulled answer are scanned for PII
+again. Pages are checked for prompt injection when published (flagged pages
+are quarantined) and again when pulled. A content hash confirms a page did not
+change after publishing.
+
+The search result tells the agent to ask the user before pulling, and price
+caps and the monthly budget are enforced in code. The ask itself is left to
+the agent. For a hard two-step flow, the marketplace tools below split it into
+a quote and a separate settle call.
 
 ### Tools
 
@@ -97,9 +103,9 @@ scanned for PII.
 | `cloud_brain_pull` | Pull cited pages from one contributor, within price and budget limits. Returns a simulated receipt |
 | `cloud_brain_feedback` | Rate whether a pull helped. Feeds contributor reputation |
 
-The old marketplace view (`cloud_brain_quote`, `cloud_brain_settle`,
-`cloud_brain_history`, `cloud_brain_marketplace_summary`) is still there, behind
-`CLOUD_BRAIN_MARKETPLACE=true`.
+The marketplace tools from the original build (`cloud_brain_quote`,
+`cloud_brain_settle`, `cloud_brain_history`, `cloud_brain_marketplace_summary`)
+are still there, behind `CLOUD_BRAIN_MARKETPLACE=true`.
 
 ## Run it yourself
 
@@ -153,7 +159,7 @@ They are not market prices.
 ## Why I shelved it
 
 - **Cold start.** The network is only useful when it is dense, and nobody
-  contributes until it is useful. My own stress test rated this the top risk.
+  contributes until it is useful. My stress test rated this the top risk.
   Ten contributors on different topics would still miss most questions.
 - **The core bet was never tested.** Is someone else's compiled research
   noticeably better than what the model gives you alone? For most questions
@@ -170,9 +176,11 @@ from measured lift instead of thumbs up.
 ## Project context and authorship
 
 This is a product-led project. I am not a software engineer. I framed the
-problem, ran the stress test that killed the first version (a website where you
-buy wiki pages from strangers), and directed AI coding agents to build the
-second: Codex and Claude Code in April 2026.
+problem and wrote a stress test of the idea: the assumptions it rests on,
+competitors, unit economics and the strongest arguments against it. That
+killed the first version, a website where you buy wiki pages from strangers.
+I then directed AI coding agents, Codex and Claude Code, to build the second
+version in April 2026.
 
 My part was the product decisions: put the network inside the AI client
 instead of on a website, stay quiet unless the match is confident, check your

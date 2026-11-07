@@ -12,7 +12,7 @@ export const REPO_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url
 /**
  * Score scales differ by backend. TF-IDF cosine on short queries runs much lower than
  * OpenAI embedding cosine, so each backend gets its own gates. The memory values are
- * calibrated against sample-wikis/ in test/calibration.test.ts.
+ * calibrated against sample-wikis/ by the story tests in test/search.test.ts.
  */
 export const THRESHOLDS: Record<"memory" | "supabase", ScoreThresholds> = {
   memory: { candidateFloor: 0.03, confident: 0.4, ownConfident: 0.33, rawScale: 4 },

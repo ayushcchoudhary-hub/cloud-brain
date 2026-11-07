@@ -21,7 +21,7 @@ export async function sampleService(env: Record<string, string> = {}) {
   return bootstrap(config);
 }
 
-/** The queries from the demo story, shared by the calibration test and the demo. */
+/** The demo story queries. src/demo.ts runs the same questions. */
 export const STORY = {
   network: "how do I build a golden test set to measure RAG retrieval quality, and which metrics should I track?",
   own: "how should I write MCP tool descriptions so the model picks the right tool?",
