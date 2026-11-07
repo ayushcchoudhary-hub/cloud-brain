@@ -2,6 +2,8 @@
 
 > Where US implementation of the GENIUS Act stands in November 2026, which charter each issuer holds, and how MiCA treats each token in the EU.
 
+Research notes from public sources, as of November 2026. Not financial advice.
+
 ## GENIUS Act: the dates
 
 - **Signed:** 18 July 2025.
@@ -16,8 +18,8 @@ Regulators missed the July 2026 deadline the statute set for final rules. Where 
 | Agency | Status |
 | --- | --- |
 | OCC | Final rule issued 21 Oct 2026 (Bulletin 2026-50), plus Bulletin 2026-51 on applications and waivers |
-| FDIC | Proposed 4 Apr 2026, not yet final |
-| Federal Reserve | Proposed 29 Sep 2026 |
+| FDIC | Proposed 7 Apr 2026, not yet final |
+| Federal Reserve | Proposed 24 Sep 2026 |
 | Treasury (FinCEN, OFAC) | AML and sanctions rules proposed April 2026 |
 | Treasury | Principles for state regimes proposed April 2026 |
 
@@ -27,12 +29,10 @@ Regulators missed the July 2026 deadline the statute set for final rules. Where 
 
 **Yield:** the statute bans issuers from paying interest or yield "solely in connection with" holding a payment stablecoin. Detail in [[yield-and-distribution-economics]].
 
-**Wider market structure bill:** the CLARITY Act had stalled as of August 2026, with treatment of stablecoin rewards one of the sticking points.
-
 ## Issuer by issuer (US)
 
-- **Circle:** conditional OCC approval for a national trust bank, December 2025.
-- **Paxos:** converted its NYDFS limited purpose trust charter into an OCC national trust charter, completed 12 December 2025. All of Paxos Trust Company's US activity, including PYUSD, is now under OCC supervision. NYDFS appears on PayPal's page only for PayPal's own New York virtual currency licence.
+- **Circle:** conditional OCC approval for a national trust bank in December 2025, then final approval on 10 July 2026 for First National Digital Currency Bank, N.A. The bank launches with custody only; managing the USDC reserve is not part of the launch. Coverage of the approval says USDC issuance moves to a New York limited purpose trust company.
+- **Paxos:** the OCC conditionally approved conversion of its NYDFS limited purpose trust charter into an OCC national trust charter on 12 December 2025, and Paxos says the conversion completed that day. Paxos says all of Paxos Trust Company's US activity, including PYUSD, is now under OCC supervision. On PayPal's page, NYDFS appears only as the charter of PayPal's own New York limited purpose trust company.
 - **Bridge:** conditional OCC approval for a national trust bank, 17 February 2026. Bridge's current FAQ describes it as a registered MSB with state money transmitter licences. I could not confirm final charter approval.
 - **Ethena:** USDe is a synthetic dollar, not a fiat-reserve token. Ethena's docs treat the US as a restricted jurisdiction for staking (US addresses cannot stake into sUSDe). For partner products that need a GENIUS-compliant asset, Ethena points to USDtb, issued by Anchorage Digital Bank. Whether USDe itself falls inside the GENIUS definition of a payment stablecoin has not been settled publicly. Treat as uncertain.
 
@@ -50,7 +50,7 @@ USDG's main issuer, Paxos Digital Singapore, is a Major Payments Institution sup
 
 ## What this means for a holder
 
-By late January 2027 the US picture splits into authorized issuers (or those with a pending application and waiver) and everything else. For a treasury, the practical questions are in [[treasury-risk-comparison]].
+From 18 January 2027 the statute splits US issuers into authorized issuers (or those with a pending application and waiver) and everything else. For a treasury, the practical questions are in [[treasury-risk-comparison]].
 
 ## Sources
 
@@ -58,6 +58,10 @@ By late January 2027 the US picture splits into authorized issuers (or those wit
 - [Skadden: OCC finalizes GENIUS Act rule](https://www.skadden.com/insights/publications/2026/10/occ-finalizes-genius-act-rule)
 - [Winston Taylor: OCC final rule summary](https://www.winstontaylor.com/insights/occ-finalizes-genius-act-rules-for-stablecoin-issuers)
 - [The Block: OCC races to finalize rules (Aug 2026)](https://theblock.co/news/regulation/2026-08-19-occ-races-to-finalize-genius-act-stablecoin-rules-by-november-412240)
+- [FDIC proposes GENIUS rules (The Block, Apr 2026)](https://www.theblock.co/post/396588/fdic-proposes-ruleset-stablecoin-issuers-following-genius-enactment)
+- [PYMNTS: Fed proposes GENIUS Act rules (Sep 2026)](https://pymnts.com/cryptocurrency/2026/fed-proposes-stablecoin-reserve-and-capital-rules-under-genius-act)
+- [The Block: Circle wins final OCC approval (Jul 2026)](https://www.theblock.co/news/regulation/2026-07-10-stablecoin-firm-circle-wins-final-occ-approval-to-open-national-trust-bank-407876)
+- [OCC conditional approval letter for Paxos (Dec 2025)](https://occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125e.pdf)
 - [Paxos completes OCC conversion](https://www.paxos.com/newsroom/occ-approves-paxos-application-to-convert-to-occ-trust-paxos-to-complete-conversion-imminently-to-become-a-federally-regulated-blockchain-infrastructure-provider)
 - [The Block: Bridge conditional OCC approval](https://www.theblock.co/post/390263/stripe-stablecoin-bridge-wins-conditional-occ-approval-national-bank-charter)
 - [Circle MiCA announcement](https://www.circle.com/pressroom/circle-is-first-global-stablecoin-issuer-to-comply-with-mica-eus-landmark-crypto-law)

@@ -2,20 +2,22 @@
 
 > Who keeps the interest on stablecoin reserves, how much flows to distributors, what holders can actually earn, and where sUSDe's yield comes from and what can break it.
 
+Research notes from public sources, as of November 2026. Not financial advice.
+
 ## The basic split
 
 Reserves earn roughly the short-term Treasury rate. Holders of a fiat-backed coin get no interest by default. The question is who gets that spread: issuer, distributor, or holder.
 
 ## Circle: most of the spread goes to distribution
 
-- Q3 2026: reserve income $658M, down 8% year on year because the reserve return rate fell 61 bps (coverage of the results puts the rate near 3.5%).
+- Q3 2026: reserve income $658M, down 8% year on year because the reserve return rate fell 61 bps.
 - Distribution, transaction and other costs: $412M in the same quarter, so roughly 63% of reserve income went back out.
 - The biggest recipient is Coinbase. Under the collaboration agreement, Coinbase gets 100% of reserve income on USDC held on its platform and 50% of the residual on USDC held elsewhere. The agreement renewed on existing terms and runs through 2029.
 - USDC terms: holders "are not entitled to any interest or other returns earned on such funds."
 
 ## Paxos: yield is passed to partners by design
 
-- **PYUSD via PayPal:** PayPal advertises 4% annual rewards on PYUSD held in eligible accounts. The rate is variable, calculated on average daily balance, paid monthly in PYUSD, requires opting in and holding at least 1 PYUSD. PayPal pays it, not Paxos. I could not confirm whether business accounts are eligible.
+- **PYUSD via PayPal:** PayPal's page advertised 4% annual rewards on PYUSD held in eligible accounts as of 7 November 2026. The rate is variable, calculated on average daily balance, paid monthly in PYUSD, requires opting in and holding at least 1 PYUSD. PayPal pays it, not Paxos. I could not confirm whether business accounts are eligible.
 - **USDG:** Global Dollar Network partners can keep up to the full reserve yield on USDG held on their platforms, plus extra rewards for growing the network. The network said in July 2026 that tens of millions of dollars had been paid out.
 
 ## Bridge: the brand keeps the yield
@@ -55,21 +57,22 @@ The statute bars issuers from paying holders interest or yield "solely in connec
 - dropped a proposed presumption against affiliate arrangements, and expects a later clarifying rule;
 - excludes bank deposits, including tokenized deposits.
 
-So rewards like PayPal's and partner sharing like USDG's are not banned outright, but sit under case-by-case review. Treat any advertised rate as uncertain.
+So rewards like PayPal's and partner sharing like USDG's are not banned outright, but sit under case-by-case review. Any advertised rate sits under that review.
 
-## For a $5M balance
+## Published rates side by side
 
-| Option | Indicative annual return | Main catch |
+Rates as published on the dates shown. They change often and are not a forecast of returns.
+
+| Option | Published rate | Main catch |
 | --- | --- | --- |
-| Hold USDC | 0% | Issuer and distributors keep the spread |
-| PYUSD with PayPal rewards | 4% = $200k, if eligible | Variable rate, regulatory review |
-| Own Bridge coin | 2.2% to 3.3% on Bridge's examples | Need a product reason to issue |
-| sUSDe | about 5% recently | Market, custody, funding risk; US restricted |
+| USDC held directly | 0% (USDC terms) | Issuer and distributors keep the spread |
+| PYUSD with PayPal rewards | 4%, variable (PayPal page, 7 Nov 2026) | Eligibility rules; business accounts unconfirmed; case-by-case GENIUS review |
+| Own Bridge coin | 2.2% to 3.3% (Bridge's $100M examples) | Needs a product reason to issue |
+| sUSDe | 5.00% 30-day average (Ethena API, 4 Nov 2026) | Past average only; market, custody, funding risk; US restricted |
 
 ## Sources
 
 - [Circle Q3 2026 results](https://www.circle.com/pressroom/circle-reports-third-quarter-2026-results)
-- [Blockonomi: Circle Q3 2026 coverage](https://blockonomi.com/circle-crcl-stock-rises-as-q3-revenue-hits-865m-and-usdc-circulation-reaches-73-3b/)
 - [KuCoin: Circle and Coinbase agreement renewed through 2029](https://www.kucoin.com/blog/circle-renews-usdc-revenue-sharing-agreement-with-coinbase-through-2029)
 - [Circle USDC terms](https://www.circle.com/legal/usdc-terms)
 - [PayPal PYUSD page](https://www.paypal.com/us/digital-wallet/manage-money/crypto/pyusd)

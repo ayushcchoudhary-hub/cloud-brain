@@ -26,7 +26,7 @@
           "args": {
             "query": "Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act."
           },
-          "response_text": "Found compiled research from Kestrel. It covers Treasury Risk Comparison for a $5M Holding, Redemption Mechanics, Fees and Timing, and Reserve Models and Attestations.\nPrice: $3.96 USDC (simulated). Ask the user before pulling.\nTo pull: cloud_brain_pull with contributor \"kestrel\".",
+          "response_text": "Found compiled research from Kestrel. It covers Treasury Risk Comparison for a $5M Holding, Redemption Mechanics, Fees and Timing, and Reserve Models and Attestations.\nPrice: $4.05 USDC (simulated). Ask the user before pulling.\nTo pull: cloud_brain_pull with contributor \"kestrel\".",
           "is_error": false
         },
         {
@@ -40,18 +40,18 @@
             "query": "Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act.",
             "contributor": "kestrel"
           },
-          "response_text": "Compiled research from Kestrel (3 pages):\n[S1] Treasury Risk Comparison for a $5M Holding: Side-by-side risk notes for a company holding about $5M in USDC, PYUSD, USDG, a Bridge-issued coin or USDe: depeg history, counterparty and custody exposure, chain support, and what a sensible setup looks like. Prices on DefiLlama on 7 November 2026: USDC 0.9998, PYUSD 0.9996, USDG 0.9999, USDe 0.9987.\n[S2] Redemption Mechanics, Fees and Timing: How a company actually turns each token back into bank dollars: who can redeem direct, what it costs on a $5M ticket, how long it takes, and what the OCC rule will force from 2027. A treasury holding USDe is effectively relying on market makers to keep the price near $1.\n[S3] Reserve Models and Attestations: What actually backs each token, who checks it, how often, and what the GENIUS Act and the OCC's final rule will require from January 2027. Circle discloses holdings and mint and burn flows weekly, and a Big Four firm gives monthly assurance that reserves exceed USDC in circulation.\nSources: treasury-risk-comparison.md, redemption-mechanics-and-fees.md, reserve-models-and-attestations.md\nSIMULATED payment: $3.96 USDC to Kestrel. Receipt sim_ee62c9aeda2c. No real funds moved.",
+          "response_text": "Compiled research from Kestrel (3 pages):\n[S1] Treasury Risk Comparison for a $5M Holding: Side-by-side risk notes for a company holding about $5M in USDC, PYUSD, USDG, a Bridge-issued coin or USDe: depeg history, counterparty and custody exposure, chain support, and common setup patterns with their tradeoffs. Prices on DefiLlama on 7 November 2026: USDC 0.9998, PYUSD 0.9996, USDG 0.9999, USDe 0.9987.\n[S2] Redemption Mechanics, Fees and Timing: How a company actually turns each token back into bank dollars: who can redeem direct, what it costs on a $5M ticket, how long it takes, and what the OCC rule requires from 2027. A treasury holding USDe is effectively relying on market makers to keep the price near $1.\n[S3] Reserve Models and Attestations: What actually backs each token, who checks it, how often, and what the GENIUS Act and the OCC's final rule will require from January 2027. Circle discloses holdings and mint and burn flows weekly, and a Big Four firm gives monthly assurance that reserves exceed USDC in circulation.\nSources: treasury-risk-comparison.md, redemption-mechanics-and-fees.md, reserve-models-and-attestations.md\nSIMULATED payment: $4.05 USDC to Kestrel. Receipt sim_dc8522b3cfae. No real funds moved.",
           "is_error": false
         },
         {
           "kind": "tool",
           "tool": "cloud_brain_feedback",
           "args": {
-            "receipt_id": "sim_ee62c9aeda2c",
+            "receipt_id": "sim_dc8522b3cfae",
             "useful": true,
             "rating": 5
           },
-          "response_text": "Feedback saved for sim_ee62c9aeda2c (useful, 5/5). Kestrel's reputation: 3.00 -> 3.09 of 5.",
+          "response_text": "Feedback saved for sim_dc8522b3cfae (useful, 5/5). Kestrel's reputation: 3.00 -> 3.09 of 5.",
           "is_error": false
         }
       ]
@@ -102,7 +102,7 @@
             "query": "Who keeps the reserve yield on USDC, PYUSD and USDG, and what is the GENIUS Act position on stablecoin rewards programs?",
             "contributor": "kestrel"
           },
-          "response_text": "Not pulled. Monthly spend would reach $7.91, over the $5.00 budget. Nothing was charged.",
+          "response_text": "Not pulled. Monthly spend would reach $8.01, over the $5.00 budget. Nothing was charged.",
           "is_error": false
         }
       ]

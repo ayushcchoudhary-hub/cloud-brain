@@ -2,6 +2,8 @@
 
 > What actually backs each token, who checks it, how often, and what the GENIUS Act and the OCC's final rule will require from January 2027.
 
+Research notes from public sources, as of November 2026. Not financial advice.
+
 ## Attestation is not an audit
 
 Most issuers publish **attestations**: an accounting firm examines a point-in-time reserve report and says whether it is fairly stated. That is narrower than a full financial statement audit. It says reserves matched supply on the report date, not what happened in between.
@@ -31,7 +33,7 @@ Bridge is unusual because the **brand chooses the reserve mix**:
 - **On-chain stablecoins** (USDC, USDB, OUSD and others) for 24/7 redemptions, earning nothing.
 - **Treasuries** through BlackRock and Fidelity money market funds, or tokenized via Superstate USTB and BlackRock's BUIDL.
 
-Reserves are held in segregated, bankruptcy-remote accounts. Bridge runs a public transparency endpoint that returns on-chain supply, reserve amounts by type, and a collateralization ratio. Its docs describe independent attestations as **quarterly** and available for an additional fee. That cadence is below the monthly floor GENIUS sets, so I expect it to change before January 2027. That is my inference, not something Bridge has said.
+Reserves are held in segregated, bankruptcy-remote accounts. Bridge runs a public transparency endpoint that returns on-chain supply, reserve amounts by type, and a collateralization ratio. Its docs describe independent attestations as **quarterly** and available for an additional fee. For comparison, the GENIUS Act sets monthly examination as the floor for permitted issuers.
 
 ## Ethena (USDe)
 
@@ -45,7 +47,7 @@ Checks are different too. Custodians publish **monthly** attestations of assets 
 
 ## What the OCC rule adds
 
-The OCC's final rule (21 October 2026) sets numeric limits for federally supervised issuers: at least 5% of reserves in demand deposits or similar, no more than 40% exposed to any one counterparty (US government exposure and centrally cleared repo excluded), stress testing, and a $5M capital floor plus a 12-month operating-expense backstop.
+The OCC's final rule (21 October 2026) sets numeric limits for federally supervised issuers: at least 5% of reserves in demand deposits or similar, no more than 40% exposed to any one counterparty (US government exposure, assets at qualifying custodians and centrally cleared repo excluded), stress testing, and a $5M capital floor plus a 12-month operating-expense backstop.
 
 ## Comparison
 
@@ -68,3 +70,4 @@ The OCC's final rule (21 October 2026) sets numeric limits for federally supervi
 - [Ethena docs: custodian attestations](https://docs.ethena.fi/resources/custodian-attestations)
 - [GENIUS Act, enrolled text](https://www.govinfo.gov/content/pkg/BILLS-119s1582enr/html/BILLS-119s1582enr.htm)
 - [Skadden: OCC finalizes GENIUS Act rule](https://www.skadden.com/insights/publications/2026/10/occ-finalizes-genius-act-rule)
+- [Winston Taylor: OCC final rule summary](https://www.winstontaylor.com/insights/occ-finalizes-genius-act-rules-for-stablecoin-issuers)

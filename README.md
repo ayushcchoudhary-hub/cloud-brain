@@ -20,7 +20,7 @@ You can reproduce the tool output with `npm run demo`.
 
 | Step | What happens | Why it matters |
 |---|---|---|
-| 1 | "Compare USDC, PYUSD and USDe for a $5M treasury." Another contributor has compiled 6 pages on it. The agent asks, pulls 3 cited pages and gets a simulated $3.96 receipt | Days of someone else's research for a few dollars, inside the session |
+| 1 | "Compare USDC, PYUSD and USDe for a $5M treasury." Another contributor has compiled 6 pages on it. The agent asks, pulls 3 cited pages and gets a simulated $4.05 receipt | Days of someone else's research for a few dollars, inside the session |
 | 2 | "How should an agent decide whether to pay for a tool call?" Your own wiki covers it | Your own notes come first and cost nothing |
 | 3 | "What does a seed-stage startup need for SOC 2?" Nobody covered it | The server returns nothing. No weak matches, no charge |
 | 4 | A second paid pull would go over the $5 monthly budget (terminal demo only) | Spend limits are enforced in code, not left to the model |
@@ -65,7 +65,7 @@ sequenceDiagram
   CB->>N: TF-IDF match, rerank, confidence gate
   alt confident match from someone else
     CB-->>A: who covered it, what it covers, price
-    A->>U: "Kestrel compiled this. Pull it for $3.96?"
+    A->>U: "Kestrel compiled this. Pull it for $4.05?"
     U->>A: yes
     A->>CB: cloud_brain_pull(query, contributor)
     CB-->>A: cited pages + simulated USDC receipt

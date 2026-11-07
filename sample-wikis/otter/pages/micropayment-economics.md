@@ -22,7 +22,7 @@ Using published prices (Stripe pricing page; CDP Facilitator pricing after the f
 Notes on the table:
 
 - The first 1,000 CDP settlements each month are free, so a small seller pays nothing at all at low volume.
-- Batched settlement assumes the seller claims 1,000 vouchers in one on-chain transaction. Coinbase says one transaction "can process thousands of payments."
+- Batched settlement assumes the seller claims 1,000 vouchers in one on-chain transaction. Coinbase's CDP Facilitator page says one batch-settlement transaction can cover thousands of payments.
 - Stripe's 1.5% stablecoin rate includes fiat conversion, screening and gas sponsorship. A separate Link stablecoin rate of 0.8% is promotional through 1 January 2027.
 
 ## Reading the numbers
@@ -40,7 +40,7 @@ Notes on the table:
 
 ## Costs that are not in the fee line
 
-- **Capital lock-up.** Batched settlement needs a deposit. The x402 batch scheme defaults to 5 times the per-request maximum (minimum 3), or 10 times if the server sends a `minDeposit` hint. A cap of $0.05 per call means locking $0.25 to $0.50 per channel.
+- **Capital lock-up.** Batched settlement needs a deposit. In the x402 batch scheme, servers always send a `minDeposit` hint, which defaults to 10 times the per-request amount. The client multiplier (default 5, minimum 3) only applies when no hint is sent. So a $0.05 price per call means locking about $0.50 per channel by default.
 - **Cash delay.** Batching saves gas but delays when the seller gets paid. The x402 docs give example cadences of claims every 60 seconds and settlement every 300 seconds.
 - **On and off ramps.** Getting USDC in and out of a bank account has its own cost. Direct issuer accounts can be cheap; processors bundle conversion into their percentage.
 - **Failed and duplicate payments.** Retries without idempotency can double-charge. The `payment-identifier` extension exists for this.

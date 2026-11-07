@@ -2,7 +2,7 @@
 
 > Who issues which dollar token, how big each one is, and the core difference in how each holds its peg. Starting point for a company choosing a token to hold or move on-chain.
 
-Notes compiled from public sources, as of November 2026. Not financial advice.
+Research notes from public sources, as of November 2026. Not financial advice.
 
 ## Scope
 
@@ -27,11 +27,11 @@ Supply figures from DefiLlama's stablecoin API, pulled 7 November 2026. For scal
 
 ## Issuer notes
 
-**Circle.** Public company since its 2025 IPO. Q3 2026 results: average USDC in circulation $73.3B, reserve income $658M, distribution and transaction costs $412M. Circle's contract list shows USDC on 38 mainnet chains. EU issuance runs through Circle Internet Financial Europe SAS, which got a French EMI licence in July 2024. Circle received conditional OCC approval for a national trust bank in December 2025.
+**Circle.** Public company since its 2025 IPO. Q3 2026 results: average USDC in circulation $73.3B, reserve income $658M, distribution and transaction costs $412M. Circle's contract list shows USDC on 38 mainnet chains. EU issuance runs through Circle Internet Financial Europe SAS, which got a French EMI licence in July 2024. Circle got conditional OCC approval for a national trust bank in December 2025 and final approval on 10 July 2026 (First National Digital Currency Bank, N.A.). At launch the bank offers custody only. Coverage of the approval says USDC issuance moves to a New York limited purpose trust company.
 
-**Paxos.** Issues PYUSD for PayPal (PayPal's own page says it "is issued by Paxos, not PayPal or Venmo"), USDG for the Global Dollar Network, and the older USDP. Paxos converted its NYDFS trust charter into an OCC national trust charter on 12 December 2025, so its US issuance is now federally supervised. USDG is issued outside the US by Paxos Digital Singapore (MAS) and Paxos Issuance Europe (Finnish FSA). The network reported more than 150 partners in July 2026, including Kraken, OKX and Robinhood.
+**Paxos.** Issues PYUSD for PayPal (PayPal's own page says it "is issued by Paxos, not PayPal or Venmo"), USDG for the Global Dollar Network, and the older USDP. The OCC conditionally approved Paxos's conversion of its NYDFS trust charter into an OCC national trust charter on 12 December 2025, and Paxos says the conversion completed that day. Its US issuance is now federally supervised. USDG is issued outside the US by Paxos Digital Singapore (MAS) and Paxos Issuance Europe (Finnish FSA). The network reported more than 150 partners in July 2026. The same post names Kraken, OKX and Robinhood as platforms where USDG is available.
 
-**Ethena.** USDe is minted against backing assets, with short perpetual futures hedging the price exposure. Assets sit with off-exchange settlement custodians (Copper, Ceffu, Kraken, Anchorage Digital) rather than on exchanges. Only approved, KYC'd market makers can mint or redeem directly. sUSDe is the staked version that receives protocol rewards. Supply fell from $9.3B to $7.1B in November 2025 after an October dislocation on Binance, and sits near $4.9B now.
+**Ethena.** USDe is minted against backing assets, with short perpetual futures hedging the price exposure. Assets sit with off-exchange settlement custodians (Copper, Ceffu, Kraken, Anchorage Digital) rather than on exchanges. Only approved, KYC'd market makers can mint or redeem directly. sUSDe is the staked version that receives protocol rewards. Supply was about $14.7B before an October 2025 dislocation on Binance, about $9.4B on 1 November and about $7.1B by the end of November (DefiLlama). It sits near $4.9B now.
 
 **Bridge.** Stripe completed the acquisition on 4 February 2025. Two products matter here: an orchestration API for moving between fiat and stablecoins, and Open Issuance, where a company launches its own branded coin with Bridge as issuer of record. Bridge holds the reserves and passes reserve revenue, minus issuance fees, to the brand. It also offers USDB (closed loop) and supports Open USD from Open Standard. Bridge got conditional OCC approval for a national trust bank in February 2026.
 
@@ -51,8 +51,11 @@ Supply figures from DefiLlama's stablecoin API, pulled 7 November 2026. For scal
 ## Sources
 
 - [DefiLlama stablecoins API](https://stablecoins.llama.fi/stablecoins)
+- [DefiLlama USDe supply history](https://stablecoins.llama.fi/stablecoin/146)
 - [Circle Q3 2026 results](https://www.circle.com/pressroom/circle-reports-third-quarter-2026-results)
 - [Circle USDC contract addresses](https://developers.circle.com/stablecoins/usdc-contract-addresses)
+- [The Block: Circle wins final OCC approval (Jul 2026)](https://www.theblock.co/news/regulation/2026-07-10-stablecoin-firm-circle-wins-final-occ-approval-to-open-national-trust-bank-407876)
+- [OCC conditional approval letter for Paxos (Dec 2025)](https://occ.gov/news-issuances/news-releases/2025/nr-occ-2025-125e.pdf)
 - [Paxos completes OCC conversion (Dec 2025)](https://www.paxos.com/newsroom/occ-approves-paxos-application-to-convert-to-occ-trust-paxos-to-complete-conversion-imminently-to-become-a-federally-regulated-blockchain-infrastructure-provider)
 - [Global Dollar Network: 150 partners](https://globaldollar.com/newsroom/150-partners)
 - [Ethena docs: off-exchange custody](https://docs.ethena.fi/overview/off-exchange-custody)

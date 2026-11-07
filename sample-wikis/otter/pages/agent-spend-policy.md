@@ -23,7 +23,7 @@ A model can be talked into things; a wallet wrapper cannot. Coinbase's CDP SDK s
 - `maxCumulativeSpend` with `maxCumulativeSpendWindow` (for example `"24h"`): rolling budget.
 - `allowedNetworks`, `allowedAssets`, `allowedPayees`: allowlists.
 - `onApproachingLimit` with thresholds: a hook to warn before the budget runs out.
-- An append-only spend ledger for audit.
+- `maxLedgerEntries` and `store`: settings for a stored spend record (the type page does not describe them further).
 
 Their example caps payments at 10,000 atomic USDC ($0.01) each and $0.05 per 24 hours on Base. A blocked payment throws an error instead of signing.
 

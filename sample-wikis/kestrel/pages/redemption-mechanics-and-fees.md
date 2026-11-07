@@ -1,15 +1,17 @@
 # Redemption Mechanics, Fees and Timing
 
-> How a company actually turns each token back into bank dollars: who can redeem direct, what it costs on a $5M ticket, how long it takes, and what the OCC rule will force from 2027.
+> How a company actually turns each token back into bank dollars: who can redeem direct, what it costs on a $5M ticket, how long it takes, and what the OCC rule requires from 2027.
+
+Research notes from public sources, as of November 2026. Not financial advice.
 
 ## The two exits
 
 There are always two ways out of a stablecoin:
 
 1. **Primary redemption** with the issuer, 1:1, after onboarding. Slow to set up, no price risk.
-2. **Secondary sale** on an exchange or DEX. Fast, but you take whatever the market price is, and on a bad day that is below $1.
+2. **Secondary sale** on an exchange or DEX. Fast, but the seller takes whatever the market price is, and on a bad day that is below $1.
 
-For $5M, the primary route matters. Set it up early.
+At $5M the primary route removes price risk, but it only works after onboarding, which takes time.
 
 ## Circle Mint (USDC, EURC)
 
@@ -22,7 +24,7 @@ For $5M, the primary route matters. Set it up early.
 - Sending USDC on-chain out of a Mint account carries separate network fees.
 - Circle's terms say it may delay redemptions it reasonably believes are suspicious.
 
-**$5M example:** Standard costs nothing in Circle fees and takes up to 2 business days. Express costs $2,500 before any credits. A company that is not also minting heavily will not see much credit.
+**$5M example:** Standard costs nothing in Circle fees and takes up to 2 business days. Express costs $2,500 before any credits. Credits only apply when net minting in the billing period is positive.
 
 ## Paxos (PYUSD, USDG, USDP)
 
@@ -47,7 +49,7 @@ End users of a Bridge-issued coin redeem into other stablecoins such as USDC or 
 
 - Direct mint and redeem is limited to approved market-making counterparties who pass KYC/KYB. Quotes are valid for short windows.
 - Everyone else exits through secondary markets (Curve, Uniswap, centralized exchanges). A treasury holding USDe is effectively relying on market makers to keep the price near $1.
-- **sUSDe** has an unstaking cooldown. Ethena's docs say it is currently dynamic, between 1 and 7 days depending on reserve conditions. The contract allows governance to set it as high as 90 days.
+- **sUSDe** has an unstaking cooldown. Ethena's docs say it is currently dynamic, between 1 and 7 days depending on reserve conditions.
 
 ## What the OCC rule requires from 18 January 2027
 
@@ -59,11 +61,11 @@ For federally supervised issuers:
 
 Circle's free tier already sits at that two-day ceiling.
 
-## Practical checklist
+## Practical points from the docs
 
-- Open the primary account (Circle Mint, Paxos) before buying. Onboarding takes time.
-- Run a small test redemption end to end, including the bank wire.
-- For USDe, check on-chain liquidity depth for your size before entering.
+- Primary accounts (Circle Mint, Paxos) need onboarding before the first redemption.
+- Issuer processing times exclude bank settlement, so the full path to bank dollars can take longer than the stated window.
+- For USDe holders without direct access, exit cost depends on on-chain liquidity depth at the size being sold.
 
 ## Sources
 
