@@ -15,7 +15,15 @@ simulated. Prices show in USDC for readability, and nothing touches a chain.
 
 The chat window is a mockup. Every tool call and tool response in it is real
 output from this server, taken from [docs/demo-transcript.json](docs/demo-transcript.json).
-You can reproduce it with `npm run demo`.
+The cards, step banners and the user and assistant lines are written by hand.
+You can reproduce the tool output with `npm run demo`.
+
+| Step | What happens | Why it matters |
+|---|---|---|
+| 1 | "Compare USDC, PYUSD and USDe for a $5M treasury." Another contributor has compiled 6 pages on it. The agent asks, pulls 3 cited pages and gets a simulated $3.96 receipt | Days of someone else's research for a few dollars, inside the session |
+| 2 | "How should an agent decide whether to pay for a tool call?" Your own wiki covers it | Your own notes come first and cost nothing |
+| 3 | "What does a seed-stage startup need for SOC 2?" Nobody covered it | The server returns nothing. No weak matches, no charge |
+| 4 | A second paid pull would go over the $5 monthly budget (terminal demo only) | Spend limits are enforced in code, not left to the model |
 
 ## The problem
 
@@ -57,7 +65,7 @@ sequenceDiagram
   CB->>N: TF-IDF match, rerank, confidence gate
   alt confident match from someone else
     CB-->>A: who covered it, what it covers, price
-    A->>U: "Wren compiled this. Pull it for $3.27?"
+    A->>U: "Kestrel compiled this. Pull it for $3.96?"
     U->>A: yes
     A->>CB: cloud_brain_pull(query, contributor)
     CB-->>A: cited pages + simulated USDC receipt
@@ -110,9 +118,11 @@ are still there, behind `CLOUD_BRAIN_MARKETPLACE=true`.
 ## Run it yourself
 
 Needs Node.js 22. No API keys, no database. It runs in memory on three
-fictional sample wikis: Wren (LLM evals), Otter (MCP server design, treated as
-"your" wiki) and Finch (home espresso, there so that some questions match
-nothing).
+fictional [sample wikis](sample-wikis/README.md), compiled from public sources:
+
+- **Kestrel**: stablecoin issuers compared for a company treasury (someone else's wiki)
+- **Otter**: agent payments and x402 (treated as your own wiki)
+- **Heron**: UK heat pump retrofit (far away on purpose, so most questions miss it)
 
 ```sh
 npm install
@@ -158,15 +168,18 @@ They are not market prices.
 
 ## Why I shelved it
 
-- **Cold start.** The network is only useful when it is dense, and nobody
-  contributes until it is useful. My stress test rated this the top risk.
-  Ten contributors on different topics would still miss most questions.
-- **The core bet was never tested.** Is someone else's compiled research
-  noticeably better than what the model gives you alone? For most questions
-  the model's first answer is already good. I never ran real pulls between real
-  people to find out.
-- **Single-player was the useful part.** Searching your own wiki from any AI
-  client worked well. That is a feature, not a network.
+It was a quick experiment, and the value turned out smaller than the bet:
+
+- **Re-deriving research got cheaper.** Tokens kept getting cheaper, so the
+  cost a pull saves kept shrinking. A $3 shortcut is less interesting when
+  doing it yourself costs less every month.
+- **People want to steer their research.** When I talked to people, they
+  wanted to course-correct as they went: change the angle, go deeper on one
+  part, drop another. Someone else's finished conclusions are a weaker input
+  than I expected.
+- **Paying before you can judge quality needs trust.** You cannot see the
+  research before you pay for it. That needs a reputation system, which needs
+  volume, which needs trust first. The network had none of these yet.
 
 What I would test next: measure lift directly. Capture the buyer's draft before
 a pull and after it, and have a judge model score whether the pulled research

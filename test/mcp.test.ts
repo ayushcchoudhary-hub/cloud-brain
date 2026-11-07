@@ -37,8 +37,8 @@ test("search offer and pull receipt are labelled simulated USDC", async () => {
   const client = await connect();
   const offer = text(await client.callTool({ name: "cloud_brain_search", arguments: { query: STORY.network } }));
   assert.match(offer, /USDC \(simulated\)/);
-  const pulled = text(await client.callTool({ name: "cloud_brain_pull", arguments: { query: STORY.network, contributor: "wren" } }));
-  assert.match(pulled, /SIMULATED payment: \$\d+\.\d{2} USDC to Wren\. Receipt sim_/);
+  const pulled = text(await client.callTool({ name: "cloud_brain_pull", arguments: { query: STORY.network, contributor: "kestrel" } }));
+  assert.match(pulled, /SIMULATED payment: \$\d+\.\d{2} USDC to Kestrel\. Receipt sim_/);
 });
 
 test("bad arguments and hidden tools return readable errors", async () => {

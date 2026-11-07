@@ -17,9 +17,10 @@ import { bootstrap } from "./store/index.js";
 
 const WIDTH = 96;
 const QUERIES = {
-  network: "how do I build a golden test set to measure RAG retrieval quality, and which metrics should I track?",
-  overlap: "how do I test that an agent picks the right tool with the right arguments?",
-  nothing: "what should I check before signing a commercial office lease?"
+  network: "Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act.",
+  own: "How should an agent decide whether to pay for a tool call mid-task, and how does an x402 payment actually settle on-chain?",
+  nothing: "What does a seed-stage SaaS startup need to get SOC 2 Type I ready: which policies, which tooling, and how long does the auditor's observation window take?",
+  budget: "Who keeps the reserve yield on USDC, PYUSD and USDG, and what is the GENIUS Act position on stablecoin rewards programs?"
 };
 
 type Event =
@@ -120,7 +121,7 @@ async function main(): Promise<void> {
 
   const s1 = step("1. Someone else already did this research");
   const found = await call(client, s1, "cloud_brain_search", { query: QUERIES.network }, `"${trim(QUERIES.network, 60)}"`);
-  const contributor = /contributor "([a-z0-9-]+)"/.exec(found)?.[1] ?? "wren";
+  const contributor = /contributor "([a-z0-9-]+)"/.exec(found)?.[1] ?? "kestrel";
   say(s1, "yes, pull it in");
   const pulled = await call(client, s1, "cloud_brain_pull", { query: QUERIES.network, contributor }, `contributor=${contributor}`);
   const receipt = /Receipt (sim_[a-f0-9]+)/.exec(pulled)?.[1];
@@ -129,15 +130,15 @@ async function main(): Promise<void> {
   }
 
   const s2 = step("2. Your own wiki comes first, and it is free");
-  await call(client, s2, "cloud_brain_search", { query: QUERIES.overlap }, `"${trim(QUERIES.overlap, 60)}"`);
+  await call(client, s2, "cloud_brain_search", { query: QUERIES.own }, `"${trim(QUERIES.own, 60)}"`);
 
   const s3 = step("3. Nothing confident, so the server stays quiet");
-  await call(client, s3, "cloud_brain_search", { query: QUERIES.nothing }, `"${QUERIES.nothing}"`);
+  await call(client, s3, "cloud_brain_search", { query: QUERIES.nothing }, `"${trim(QUERIES.nothing, 60)}"`);
   note(s3, "agent carries on with normal research. nothing charged.");
 
   const s4 = step("4. Budget guardrail");
-  say(s4, "also pull Wren's page on testing tool use");
-  await call(client, s4, "cloud_brain_pull", { query: QUERIES.overlap, contributor: "wren" }, "contributor=wren");
+  say(s4, "now pull Kestrel's notes on who keeps the reserve yield");
+  await call(client, s4, "cloud_brain_pull", { query: QUERIES.budget, contributor: "kestrel" }, "contributor=kestrel");
 
   console.log(`\n${dim("Every < line is a real MCP tool response. No real money moved.")}`);
   await client.close();

@@ -24,7 +24,7 @@ test("spend checks: per-pull cap, monthly budget, hourly rate", () => {
 
 test("network pull: citations, simulated USDC receipt, seller earnings, feedback", async () => {
   const { service } = await sampleService();
-  const outcome = await service.pull(STORY.network, { contributorHandle: "wren" });
+  const outcome = await service.pull(STORY.network, { contributorHandle: "kestrel" });
   assert.equal(outcome.status, "delivered");
   if (outcome.status !== "delivered") return;
   assert.equal(outcome.source, "network");
@@ -35,10 +35,10 @@ test("network pull: citations, simulated USDC receipt, seller earnings, feedback
   assert.equal(outcome.receipt.currency, "USDC");
   assert.equal(outcome.receipt.simulated, true);
 
-  const [wren] = (await service.summary()).topContributors;
-  assert.equal(wren?.handle, "wren");
-  assert.equal(wren?.totalPulls, 1);
-  assert.equal(wren?.totalEarningsUsdc, outcome.receipt.amountUsdc);
+  const [kestrel] = (await service.summary()).topContributors;
+  assert.equal(kestrel?.handle, "kestrel");
+  assert.equal(kestrel?.totalPulls, 1);
+  assert.equal(kestrel?.totalEarningsUsdc, outcome.receipt.amountUsdc);
 
   const fb = await service.feedback({ receiptId: outcome.receipt.receiptId, useful: true, rating: 5 });
   assert.ok((fb.reputation ?? 0) > 3);
@@ -58,10 +58,10 @@ test("own pull is free and has no receipt", async () => {
 
 test("budget and per-pull cap block a pull and charge nothing", async () => {
   const { service } = await sampleService({ MONTHLY_BUDGET_USDC: "5" });
-  assert.equal((await service.pull(STORY.network, { contributorHandle: "wren" })).status, "delivered");
-  const second = await service.pull(STORY.overlap, { contributorHandle: "wren" });
+  assert.equal((await service.pull(STORY.network, { contributorHandle: "kestrel" })).status, "delivered");
+  const second = await service.pull(STORY.budget, { contributorHandle: "kestrel" });
   assert.equal(second.status, "blocked_by_limit");
-  const capped = await service.pull(STORY.network, { contributorHandle: "wren", maxPriceUsdc: 1 });
+  const capped = await service.pull(STORY.network, { contributorHandle: "kestrel", maxPriceUsdc: 1 });
   assert.equal(capped.status, "blocked_by_limit");
   assert.equal((await service.history()).length, 1);
 });

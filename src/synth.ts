@@ -3,18 +3,16 @@ import type { SearchResult } from "./types.js";
 
 export type SynthMode = "extractive" | "openai";
 
-/** Plain sentences from markdown: no headings, links collapsed, list markers removed. */
+/** Plain sentences from markdown: no headings, tables or quotes, links collapsed, list markers removed. */
 function sentences(markdown: string): string[] {
   return markdown
     .replace(/```[\s\S]*?```/g, " ")
     .split("\n")
-    .filter((line) => !/^\s*(#|>)/.test(line))
-    .map((line) => line.replace(/^\s*([-*]|\d+\.)\s+/, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1"))
-    .join(" ")
-    .replace(/[*_`]/g, "")
-    .split(/(?<=[.!?])\s+/)
+    .filter((line) => !/^\s*(#|>|\|)/.test(line))
+    .map((line) => line.replace(/^\s*([-*]|\d+\.)\s+/, "").replace(/\[([^\]]+)\]\([^)]+\)/g, "$1").replace(/[*_`]/g, ""))
+    .flatMap((line) => line.split(/(?<=[.!?])\s+/))
     .map((s) => s.trim())
-    .filter((s) => s.length >= 40 && s.length <= 260);
+    .filter((s) => s.length >= 40 && s.length <= 260 && !s.endsWith(":"));
 }
 
 /** The sentence that shares the most terms with the query. */
