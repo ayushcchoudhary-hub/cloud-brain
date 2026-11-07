@@ -130,7 +130,9 @@ export const handlers: Record<string, Handler> = {
     });
     const rating = saved.rating ? `, ${saved.rating}/5` : "";
     const reputation =
-      saved.reputation === undefined ? "" : ` ${saved.contributorDisplayName}'s reputation: ${saved.reputation.toFixed(2)}/5.`;
+      saved.reputation === undefined
+        ? ""
+        : ` ${saved.contributorDisplayName}'s reputation: ${saved.previousReputation !== undefined ? `${saved.previousReputation.toFixed(2)} -> ` : ""}${saved.reputation.toFixed(2)} of 5.`;
     return reply(`Feedback saved for ${saved.receiptId} (${saved.useful ? "useful" : "not useful"}${rating}).${reputation}`, {
       status: "feedback_recorded",
       ...saved

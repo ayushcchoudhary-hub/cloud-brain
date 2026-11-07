@@ -70,7 +70,7 @@ export interface CloudBrainService {
     useful: boolean;
     rating?: number;
     comment?: string;
-  }): Promise<Feedback & { contributorDisplayName: string; reputation?: number }>;
+  }): Promise<Feedback & { contributorDisplayName: string; reputation?: number; previousReputation?: number }>;
   history(options?: { buyerId?: string; limit?: number }): Promise<Array<{ payment: Payment; feedback?: Feedback }>>;
   summary(): Promise<MarketplaceSummary>;
 }
@@ -320,7 +320,7 @@ export function createService(store: Store, config: Config): CloudBrainService {
     const [seller] = await store.getContributors([payment.contributorId]);
     const reputation = seller ? nextReputation(seller.reputation, input.useful, rating) : undefined;
     if (seller) await store.updateContributor(seller.id, { reputation });
-    return { ...saved, contributorDisplayName: payment.contributorDisplayName, reputation };
+    return { ...saved, contributorDisplayName: payment.contributorDisplayName, reputation, previousReputation: seller?.reputation };
   }
 
   async function history(options: { buyerId?: string; limit?: number } = {}) {
