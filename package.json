@@ -1,0 +1,42 @@
+{
+  "name": "cloud-brain",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "bin": {
+    "cloud-brain": "./bin/cloud-brain.mjs"
+  },
+  "scripts": {
+    "publish:wiki": "node --import tsx packages/cli/src/index.ts publish",
+    "embed:wiki": "node --import tsx scripts/embed-wiki.ts",
+    "embed:contributor": "node --import tsx scripts/embed-contributor.ts",
+    "embed:network": "node --import tsx scripts/embed-demo-network.ts",
+    "test:queries": "node --import tsx scripts/test-queries.ts",
+    "demo:ab": "node --import tsx scripts/ab-demo.ts",
+    "demo:pull-flow": "node --import tsx scripts/pull-flow-demo.ts",
+    "demo:session": "node --import tsx scripts/demo-session.ts",
+    "demo:compare": "node --import tsx scripts/demo-cloud-vs-fallback.ts",
+    "audit:value": "node --import tsx scripts/value-audit.ts",
+    "review:security": "node --import tsx scripts/security-review.ts",
+    "report:marketplace": "node --import tsx scripts/marketplace-report.ts",
+    "mcp": "node --import tsx packages/mcp-server/src/index.ts",
+    "mcp:sse": "node --import tsx packages/mcp-server/src/index.ts --transport sse --port 3100",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.4",
+    "@supabase/supabase-js": "^2.54.0",
+    "dotenv": "^16.6.1",
+    "fast-glob": "^3.3.3",
+    "openai": "^5.20.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

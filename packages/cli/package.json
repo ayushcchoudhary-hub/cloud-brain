@@ -1,0 +1,8 @@
+{
+  "name": "@cloud-brain/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "cloud-brain": "./src/index.ts"
+  }
+}
