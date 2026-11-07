@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root {
+    --bg: #f6f5f1; --panel: #ffffff; --ink: #1d1d1b; --muted: #77756e;
+    --line: #e4e2db; --accent: #2f6f5e; --accent-soft: #e6f0ec; --amber: #8a5a00; --amber-soft: #fbf1dc;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); font-family: var(--sans); color: var(--ink); }
+  .window { width: 960px; height: 600px; margin: 0; background: var(--panel); display: flex; flex-direction: column; overflow: hidden; }
+  .bar { height: 40px; border-bottom: 1px solid var(--line); display: flex; align-items: center; padding: 0 16px; gap: 8px; flex: none; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; background: #dcdad3; }
+  .title { margin-left: 10px; font-size: 13px; color: var(--muted); }
+  .badge { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--accent); background: var(--accent-soft); padding: 3px 8px; border-radius: 10px; }
+  .feed { flex: 1; overflow: hidden; padding: 22px 64px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .msg { flex: none; max-width: 760px; font-size: 15px; line-height: 1.5; opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+  .msg.show { opacity: 1; transform: none; }
+  .user { align-self: flex-end; background: #efede6; padding: 10px 14px; border-radius: 14px; max-width: 560px; }
+  .assistant { align-self: flex-start; }
+  .tool { align-self: flex-start; width: 100%; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 13px; }
+  .tool .head { display: flex; gap: 8px; align-items: center; padding: 7px 12px; background: #faf9f6; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 12px; }
+  .tool .head .name { color: var(--accent); font-weight: 600; }
+  .tool .head .args { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tool .head .status { margin-left: auto; color: var(--muted); }
+  .tool pre { margin: 0; padding: 10px 12px; font-family: var(--mono); font-size: 12px; line-height: 1.45; white-space: pre-wrap; color: #33322e; max-height: 150px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 75%, transparent); }
+  .tool.empty pre { color: var(--muted); font-style: italic; }
+  .receipt { align-self: flex-start; font-family: var(--mono); font-size: 12px; background: var(--amber-soft); color: var(--amber); border: 1px dashed #d9b770; border-radius: 8px; padding: 8px 12px; }
+  .caret::after { content: "▍"; animation: blink 1s steps(1) infinite; color: var(--muted); }
+  @keyframes blink { 50% { opacity: 0; } }
+  .foot { height: 30px; border-top: 1px solid var(--line); font-size: 11px; color: var(--muted); display: flex; align-items: center; padding: 0 16px; flex: none; }
+</style>
+</head>
+<body>
+<div class="window">
+  <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <span class="title" id="title">research session</span>
+    <span class="badge">mcp: cloud-brain</span></div>
+  <div class="feed" id="feed"></div>
+  <div class="foot" id="foot">mockup chat window · tool calls and responses are real output from the cloud-brain MCP server · payments simulated (USDC)</div>
+</div>
+<script>
+// window.SCRIPT = [{kind:'user'|'assistant'|'tool'|'receipt'|'clear', text, name, args, response, hold}]
+const feed = document.getElementById('feed');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+function el(cls, html) { const d = document.createElement('div'); d.className = 'msg ' + cls; if (html !== undefined) d.innerHTML = html; feed.appendChild(d); requestAnimationFrame(() => d.classList.add('show')); return d; }
+const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+async function type(node, text, cps = 55) {
+  node.classList.add('caret');
+  for (let i = 0; i <= text.length; i += 2) { node.innerHTML = esc(text.slice(0, i)); await sleep(1000 / cps * 2); }
+  node.innerHTML = esc(text); node.classList.remove('caret');
+}
+function keepBottom() { while (feed.scrollHeight > feed.clientHeight && feed.children.length > 1) feed.removeChild(feed.firstChild); }
+async function run() {
+  for (const s of window.SCRIPT) {
+    if (s.kind === 'clear') { feed.innerHTML = ''; if (s.title) document.getElementById('title').textContent = s.title; await sleep(s.hold ?? 200); continue; }
+    if (s.kind === 'user') { const n = el('user', ''); await type(n, s.text, 70); }
+    if (s.kind === 'assistant') { const n = el('assistant', ''); await type(n, s.text, 90); }
+    if (s.kind === 'tool') {
+      const n = el('tool' + (s.response ? '' : ' empty'),
+        `<div class="head"><span class="name">${esc(s.name)}</span><span class="args">${esc(s.args || '')}</span><span class="status">running…</span></div><pre></pre>`);
+      keepBottom(); await sleep(700);
+      n.querySelector('.status').textContent = 'done';
+      n.querySelector('pre').textContent = s.response || '(empty result: no confident match, nothing shown to the user)';
+    }
+    if (s.kind === 'receipt') { el('receipt', esc(s.text)); }
+    keepBottom();
+    await sleep(s.hold ?? 900);
+  }
+  window.DONE = true;
+}
+window.addEventListener('load', () => setTimeout(run, 400));
+</script>
+</body>
+</html>
