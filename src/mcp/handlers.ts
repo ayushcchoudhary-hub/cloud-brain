@@ -93,7 +93,7 @@ export const handlers: Record<string, Handler> = {
         ];
     if (alternative) {
       lines.push(
-        `Also available from ${alternative.contributorHandle}: "${alternative.pageTitle}", ${usd(alternative.priceUsdc)} (simulated).`
+        `Also available from ${alternative.contributorDisplayName}: "${alternative.pageTitle}", ${usd(alternative.priceUsdc)} (simulated).`
       );
     }
     lines.push(`To pull: cloud_brain_pull with contributor "${top.contributorHandle}".`);
