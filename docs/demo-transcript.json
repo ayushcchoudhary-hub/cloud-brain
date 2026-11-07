@@ -1,0 +1,111 @@
+{
+  "description": "Cloud Brain demo: MCP tool calls and responses. Payments are simulated; amounts in USDC for readability only.",
+  "own_wiki": "otter",
+  "wikis": [
+    {
+      "handle": "finch",
+      "pages": 4
+    },
+    {
+      "handle": "otter",
+      "pages": 5
+    },
+    {
+      "handle": "wren",
+      "pages": 5
+    }
+  ],
+  "monthly_budget_usdc": 5,
+  "steps": [
+    {
+      "title": "1. Someone else already did this research",
+      "events": [
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_search",
+          "args": {
+            "query": "how do I build a golden test set to measure RAG retrieval quality, and which metrics should I track?"
+          },
+          "response_text": "Found compiled research from Wren. It covers Golden Datasets, Eval Strategy Overview, and RAG Retrieval Metrics.\nPrice: $3.27 USDC (simulated). Ask the user before pulling.\nTo pull: cloud_brain_pull with contributor \"wren\".",
+          "is_error": false
+        },
+        {
+          "kind": "user",
+          "text": "yes, pull it in"
+        },
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_pull",
+          "args": {
+            "query": "how do I build a golden test set to measure RAG retrieval quality, and which metrics should I track?",
+            "contributor": "wren"
+          },
+          "response_text": "Compiled research from Wren (3 pages):\n[S1] Golden Datasets: How to build, size and maintain the labeled test set behind your evals, including when synthetic data helps and when it misleads. Metric definitions live in rag-retrieval-metrics.\n[S2] Eval Strategy Overview: How to stand up evals for an LLM app: start from real failures, layer cheap checks under expensive ones, and keep a human in the loop for calibration. Measure retrieval with recall@k against a labeled set, then measure generation separately on cases where retrieval succeeded.\n[S3] RAG Retrieval Metrics: Which numbers to track for the retrieval half of a RAG system, how to compute them on a small labeled set, and what usually moves them. Evaluate retrieval first, using a labeled set of queries where you know which documents or chunks are relevant.\nSources: golden-datasets.md, eval-strategy-overview.md, rag-retrieval-metrics.md\nSIMULATED payment: $3.27 USDC to Wren. Receipt sim_2c5f7910268d. No real funds moved.",
+          "is_error": false
+        },
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_feedback",
+          "args": {
+            "receipt_id": "sim_2c5f7910268d",
+            "useful": true,
+            "rating": 5
+          },
+          "response_text": "Feedback saved for sim_2c5f7910268d (useful, 5/5). Wren's reputation: 3.09/5.",
+          "is_error": false
+        }
+      ]
+    },
+    {
+      "title": "2. Your own wiki comes first, and it is free",
+      "events": [
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_search",
+          "args": {
+            "query": "how do I test that an agent picks the right tool with the right arguments?"
+          },
+          "response_text": "Your own wiki covers this: Testing MCP Servers and Tool Design Patterns. Free.\nAlso available from wren: \"Evaluating Tool-Use Agents\", $3.29 USDC (simulated).\nTo pull: cloud_brain_pull with contributor \"otter\".",
+          "is_error": false
+        }
+      ]
+    },
+    {
+      "title": "3. Nothing confident, so the server stays quiet",
+      "events": [
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_search",
+          "args": {
+            "query": "what should I check before signing a commercial office lease?"
+          },
+          "response_text": "",
+          "is_error": false
+        },
+        {
+          "kind": "note",
+          "text": "agent carries on with normal research. nothing charged."
+        }
+      ]
+    },
+    {
+      "title": "4. Budget guardrail",
+      "events": [
+        {
+          "kind": "user",
+          "text": "also pull Wren's page on testing tool use"
+        },
+        {
+          "kind": "tool",
+          "tool": "cloud_brain_pull",
+          "args": {
+            "query": "how do I test that an agent picks the right tool with the right arguments?",
+            "contributor": "wren"
+          },
+          "response_text": "Not pulled. Monthly spend would reach $6.56, over the $5.00 budget. Nothing was charged.",
+          "is_error": false
+        }
+      ]
+    }
+  ]
+}
