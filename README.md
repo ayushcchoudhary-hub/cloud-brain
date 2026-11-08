@@ -19,6 +19,8 @@ trimmed to the lines that matter. The full responses are in
 [docs/demo-transcript.json](docs/demo-transcript.json), and `npm run demo`
 reproduces them. The clip is rebuilt from [docs/film](docs/film/README.md).
 
+`npm run demo` walks through four steps:
+
 | Step | What happens | Why it matters |
 |---|---|---|
 | 1 | "Compare USDC, PYUSD and USDe for a $5M treasury." Another contributor has compiled 6 pages on it. The agent asks, pulls 3 cited pages and gets a simulated $4.05 receipt | Days of someone else's research for a few dollars, inside the session |
