@@ -1,0 +1,174 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: "Serif4"; src: url("node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "Serif4"; src: url("node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-600-normal.woff2"); font-weight: 600; }
+@font-face { font-family: "JBM"; src: url("node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "JBM"; src: url("node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2"); font-weight: 500; }
+:root {
+  --bg: #fafaf8; --ink: #141413; --muted: #8a8984; --faint: #c9c8c2; --line: #e7e6e1;
+  --green: #1f7a52; --green-soft: #e9f3ee; --amber: #8a5a00; --amber-soft: #fbf3e2;
+  --sans: "Inter", system-ui, sans-serif; --serif: "Serif4", Georgia, serif; --mono: "JBM", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.stage { position: absolute; inset: 0; }
+.el { position: absolute; opacity: 0;
+  animation: in var(--dur, 600ms) cubic-bezier(.2,.75,.2,1) var(--in, 0ms) both, out 450ms ease var(--out, 999s) forwards; }
+@keyframes in { from { opacity: 0; transform: translateY(var(--dy, 14px)); } to { opacity: 1; transform: none; } }
+@keyframes out { from { opacity: 1; } to { opacity: 0; } }
+.dim { animation: in 600ms cubic-bezier(.2,.75,.2,1) var(--in) both, dimto 700ms ease var(--dim, 999s) forwards, out 450ms ease var(--out, 999s) forwards; }
+@keyframes dimto { from { opacity: 1; } to { opacity: .22; } }
+
+/* act 1: session cards */
+.card { width: 390px; background: #fff; border: 1px solid var(--line); border-radius: 3px; padding: 12px 16px 13px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 6px 18px rgba(0,0,0,.04); }
+.card .k { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 9.5px; letter-spacing: .06em; color: var(--muted); text-transform: uppercase; }
+.card .t { font-family: var(--serif); font-size: 22px; line-height: 1.22; margin-top: 7px; }
+.card .t b { font-weight: 600; }
+.card .m { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 8px; }
+.illus { font-family: var(--mono); font-size: 9px; color: var(--faint); right: 40px; bottom: 28px; }
+
+.big { font-size: 54px; font-weight: 650; letter-spacing: -.02em; line-height: 1.05; }
+.sub { font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 18px; letter-spacing: .01em; }
+
+/* wordmark */
+.mark { display: inline-grid; grid-template-columns: repeat(3, 7px); gap: 4px; vertical-align: middle; margin-right: 14px; }
+.mark i { width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+.mark i.g { background: var(--green); }
+.word { font-size: 46px; font-weight: 600; letter-spacing: -.02em; display: flex; align-items: center; }
+
+/* network table */
+.thead { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+.query { font-family: var(--mono); font-size: 13px; background: #f1f0ec; border-radius: 3px; padding: 12px 16px; width: 760px; line-height: 1.5; }
+.query .lab { font-size: 9px; letter-spacing: .08em; color: var(--muted); display: block; margin-bottom: 4px; }
+.row { display: grid; grid-template-columns: 170px 330px 110px 160px; width: 770px; font-family: var(--mono); font-size: 14px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.row .p { color: var(--muted); }
+.st { position: relative; }
+.st span { position: absolute; left: 0; top: 0; white-space: nowrap; }
+.chk { color: var(--muted); }
+.ok { color: var(--green); font-weight: 500; }
+.no { color: var(--faint); }
+.hl { position: absolute; height: 2px; background: var(--green); transform-origin: left; animation: grow 700ms cubic-bezier(.2,.75,.2,1) var(--in) both, out 450ms ease var(--out, 999s) forwards; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* demo */
+.cap { width: 400px; }
+.cap .c1 { font-size: 40px; font-weight: 650; letter-spacing: -.02em; line-height: 1.08; }
+.cap .c2 { font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 16px; line-height: 1.6; }
+.win { left: 500px; top: 40px; width: 740px; height: 640px; background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,.03), 0 18px 50px rgba(0,0,0,.06); overflow: hidden; }
+.win .bar { height: 34px; border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 7px; padding: 0 14px; }
+.win .bar i { width: 10px; height: 10px; border-radius: 50%; background: #e2e1dc; }
+.win .bar .tt { margin-left: 8px; font-size: 11.5px; color: var(--muted); }
+.win .bar .bd { margin-left: auto; font-family: var(--mono); font-size: 10px; color: var(--green); background: var(--green-soft); padding: 2px 8px; border-radius: 9px; }
+.viewport { position: absolute; top: 35px; left: 0; right: 0; bottom: 0; overflow: hidden; }
+.feed { position: absolute; left: 28px; right: 28px; top: 18px; animation: scrollup 900ms cubic-bezier(.3,.7,.2,1) var(--scroll, 999s) both; }
+@keyframes scrollup { from { transform: none; } to { transform: translateY(var(--sy, -150px)); } }
+.feed .el { position: relative; margin-bottom: 12px; }
+.u { margin-left: auto; width: fit-content; max-width: 500px; background: #f0efea; border-radius: 12px; padding: 10px 14px; font-size: 15.5px; line-height: 1.45; }
+.a { font-size: 15.5px; line-height: 1.5; max-width: 640px; }
+.tool { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.tool .h { display: flex; gap: 8px; padding: 7px 12px; background: #fafaf7; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 11.5px; }
+.tool .h .n { color: var(--green); font-weight: 500; }
+.tool .h .g { color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tool pre { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; padding: 8px 11px; white-space: pre-wrap; color: #3a3935; }
+.tool.clamp pre { max-height: 124px; overflow: hidden; -webkit-mask-image: linear-gradient(#000 70%, transparent); }
+.rcpt { font-family: var(--mono); font-size: 11.5px; color: var(--amber); background: var(--amber-soft); border: 1px dashed #dcbc78; border-radius: 6px; padding: 7px 11px; width: fit-content; }
+
+/* beats */
+.mini { width: 560px; }
+.foot { font-family: var(--mono); font-size: 9.5px; color: var(--faint); left: 40px; bottom: 26px; }
+</style>
+</head>
+<body>
+<div class="stage">
+
+<!-- ACT 1: the same research, over and over (illustrative) -->
+__CARDS__
+<div class="el illus" style="--in:900ms;--out:5800ms">illustrative</div>
+
+<div class="el" style="left:120px;top:300px;--in:6100ms;--out:9100ms">
+  <div class="big">Everyone is researching<br>the same things.</div>
+</div>
+
+<div class="el" style="left:120px;top:290px;--in:9500ms;--out:12600ms">
+  <div class="big">Every time from zero.</div>
+  <div class="sub">days of sessions · millions of tokens · then it sits in a folder</div>
+</div>
+
+<!-- ACT 2: the idea -->
+<div class="el" style="left:120px;top:300px;--in:13000ms;--out:15600ms">
+  <div class="big">What if your agent<br>could just buy it?</div>
+</div>
+
+<div class="el" style="left:0;right:0;top:300px;display:flex;flex-direction:column;align-items:center;--in:16000ms;--out:18700ms">
+  <div class="word"><span class="mark"><i></i><i class="g"></i><i></i><i></i><i></i><i class="g"></i><i></i><i class="g"></i><i></i></span>Cloud Brain</div>
+  <div class="sub">an MCP server for published research wikis</div>
+</div>
+
+<!-- ACT 3: the network -->
+<div class="el thead" style="left:255px;top:110px;--in:19100ms;--out:26600ms">Your agent checks the network first.</div>
+<div class="el query" style="left:255px;top:160px;--in:19400ms;--out:26600ms"><span class="lab">QUERY</span>__Q1__</div>
+__ROWS__
+<div class="el" style="left:255px;top:500px;--in:23600ms;--out:26600ms;width:780px">
+  <div style="font-size:24px;font-weight:600;letter-spacing:-.01em">Kestrel already spent days on this. It costs $__PRICE__.</div>
+</div>
+
+<!-- ACT 4: the demo -->
+<div class="el cap" style="left:60px;top:250px;--in:27200ms;--out:31300ms">
+  <div class="c1">Someone already did the hard part.</div>
+  <div class="c2">your agent finds it mid-session<br>and asks before it spends anything</div>
+</div>
+<div class="el cap" style="left:60px;top:250px;--in:31600ms;--out:35000ms">
+  <div class="c1">Three cited pages, pulled straight in.</div>
+  <div class="c2">no new tab, no copy-paste</div>
+</div>
+<div class="el cap" style="left:60px;top:250px;--in:35300ms;--out:40100ms">
+  <div class="c1">$__PRICE__ instead of two days.</div>
+  <div class="c2">simulated USDC · no real funds moved</div>
+</div>
+
+<div class="el win" style="--in:26900ms;--out:40100ms;--dy:24px">
+  <div class="bar"><i></i><i></i><i></i><span class="tt">research session</span><span class="bd">mcp: cloud-brain</span></div>
+  <div class="viewport"><div class="feed" style="--scroll:33400ms;--sy:-__SCROLL__px">
+    <div class="el u" style="--in:27700ms">__Q1__</div>
+    <div class="el tool" style="--in:28900ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q1ARGS__</span></div><pre>__SEARCH__</pre></div>
+    <div class="el a" style="--in:30200ms">Kestrel has already compiled __PAGES__ on this. Pulling them costs $__PRICE__ USDC (simulated). Want me to pull them in?</div>
+    <div class="el u" style="--in:31500ms">yes, pull it in</div>
+    <div class="el tool clamp" style="--in:32300ms"><div class="h"><span class="n">cloud_brain_pull</span><span class="g">contributor: "kestrel"</span></div><pre>__PULL__</pre></div>
+    <div class="el rcpt" style="--in:34300ms">SIMULATED  $__PRICE__ USDC → Kestrel  ·  receipt __RID__  ·  no real funds moved</div>
+    <div class="el a" style="--in:35300ms">Short version from Kestrel's notes: Circle discloses USDC reserves weekly, with monthly Big Four assurance. A USDe treasury effectively relies on market makers to hold the $1 price. New OCC reserve rules start in January 2027. [S2] [S3]</div>
+  </div></div>
+</div>
+
+<!-- ACT 5: two quick beats -->
+<div class="el" style="left:120px;top:200px;--in:40500ms;--out:44000ms">
+  <div class="big" style="font-size:44px">Your own notes come first.<br>Those are free.</div>
+</div>
+<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:41100ms;--out:44000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q2ARGS__</span></div><pre>__OWN__</pre></div>
+
+<div class="el" style="left:120px;top:200px;--in:44400ms;--out:48000ms">
+  <div class="big" style="font-size:44px">Nothing worth buying?<br>It says nothing.</div>
+</div>
+<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:45000ms;--out:48000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q3ARGS__</span></div><pre style="color:var(--muted)">(empty result · nothing charged)</pre></div>
+
+<!-- END -->
+<div class="el" style="left:0;right:0;top:250px;display:flex;flex-direction:column;align-items:center;--in:48500ms">
+  <div class="word"><span class="mark"><i></i><i class="g"></i><i></i><i></i><i></i><i class="g"></i><i></i><i class="g"></i><i></i></span>Cloud Brain</div>
+  <div style="font-size:26px;font-weight:600;letter-spacing:-.01em;margin-top:26px">Research has salvage value.</div>
+  <div class="sub" style="margin-top:14px">april 2026 prototype · mcp server · payments simulated in USDC</div>
+</div>
+<div class="el" style="left:0;right:0;top:470px;text-align:center;--in:49300ms">
+  <div style="font-family:var(--mono);font-size:12px;color:var(--ink)">github.com/ayushcchoudhary-hub/cloud-brain</div>
+</div>
+
+<div class="el foot" style="--in:26900ms;--out:48000ms">tool calls and responses are real output from the cloud-brain MCP server · chat window is a mockup</div>
+
+</div>
+<script>
+window.seek = (ms) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = ms; } };
+window.seek(0);
+</script>
+</body>
+</html>

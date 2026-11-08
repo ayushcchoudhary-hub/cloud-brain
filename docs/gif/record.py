@@ -1,11 +1,11 @@
 """Record an HTML replay page into an MP4 + GIF.
-usage: python3 record.py script.json out_basename [page.html]  (default chat.html)
+usage: python3 record.py script.json out_basename [page.html]  (default term.html)
 """
 import json, subprocess, sys, time, pathlib, shutil
 from playwright.sync_api import sync_playwright
 
 script_path, out = sys.argv[1], sys.argv[2]
-HTML = sys.argv[3] if len(sys.argv) > 3 else "chat.html"
+HTML = sys.argv[3] if len(sys.argv) > 3 else "term.html"
 here = pathlib.Path(__file__).parent
 frames = here / "frames"
 shutil.rmtree(frames, ignore_errors=True)

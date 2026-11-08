@@ -11,12 +11,14 @@ Built over two days in April 2026, a few days after Karpathy's post on
 LLM-compiled personal wikis. Shelved soon after. Payments were always
 simulated. Prices show in USDC for readability, and nothing touches a chain.
 
-![A research session: the agent finds compiled research from another contributor, asks before paying, pulls it in, then stays quiet on a question nobody has covered](docs/images/cloud-brain-chat.gif)
+![A 50-second walkthrough: the problem, the network check, a paid pull in a research session, free own notes, and silence when nothing matches](docs/images/cloud-brain-film.gif)
 
-The chat window is a mockup. Every tool call and tool response in it is real
-output from this server, taken from [docs/demo-transcript.json](docs/demo-transcript.json).
-The cards, step banners and the user and assistant lines are written by hand.
-You can reproduce the tool output with `npm run demo`.
+The research-session cards at the start are illustrative. The query, every
+tool response, the price and the receipt are real output from this server,
+taken from [docs/demo-transcript.json](docs/demo-transcript.json). The chat
+window, the captions and the assistant's lines are a mockup. You can reproduce
+the tool output with `npm run demo`, and rebuild the film from
+[docs/film](docs/film/README.md).
 
 | Step | What happens | Why it matters |
 |---|---|---|
@@ -219,7 +221,7 @@ not the April build.
 | `src/demo.ts` | `npm run demo` |
 | `sample-wikis/` | Three fictional contributors |
 | `test/` | The test suite |
-| `docs/` | Demo transcript, GIFs and the script that renders the chat GIF |
+| `docs/` | Demo transcript, the film and the GIFs, and the scripts that render them |
 
 ## License
 
