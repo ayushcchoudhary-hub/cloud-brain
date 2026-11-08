@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+@font-face { font-family: "Serif4"; src: url("node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "Serif4"; src: url("node_modules/@fontsource/source-serif-4/files/source-serif-4-latin-600-normal.woff2"); font-weight: 600; }
+@font-face { font-family: "JBM"; src: url("node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-400-normal.woff2"); font-weight: 400; }
+@font-face { font-family: "JBM"; src: url("node_modules/@fontsource/jetbrains-mono/files/jetbrains-mono-latin-500-normal.woff2"); font-weight: 500; }
+:root {
+  --bg: #fafaf8; --ink: #141413; --muted: #85847e; --faint: #c4c3bd; --line: #e5e4df;
+  --green: #1f7a52; --green-soft: #e7f2ec; --amber: #7d5200; --amber-soft: #fbf1dc;
+  --sans: "Inter", system-ui, sans-serif; --serif: "Serif4", Georgia, serif; --mono: "JBM", ui-monospace, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 800px; height: 550px; overflow: hidden; background: var(--bg); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+.el { position: absolute; opacity: 0;
+  animation: in var(--dur, 550ms) cubic-bezier(.2,.75,.2,1) var(--in, 0ms) both, out 400ms ease var(--out, 999s) forwards; }
+@keyframes in { from { opacity: 0; transform: translateY(var(--dy, 12px)); } to { opacity: 1; transform: none; } }
+@keyframes out { from { opacity: 1; } to { opacity: 0; } }
+.dim { animation: in 550ms cubic-bezier(.2,.75,.2,1) var(--in) both, dimto 600ms ease var(--dim, 999s) forwards, out 400ms ease var(--out, 999s) forwards; }
+@keyframes dimto { from { opacity: 1; } to { opacity: .3; } }
+
+/* caption block, top left, one per shot */
+.cap { left: 44px; top: 40px; width: 712px; }
+.cap .c1 { font-size: 34px; font-weight: 680; letter-spacing: -.02em; line-height: 1.1; }
+.cap .c2 { font-family: var(--mono); font-size: 15px; color: var(--muted); margin-top: 10px; }
+
+/* shot 1 cards */
+.card { width: 470px; background: #fff; border: 1px solid var(--line); border-radius: 4px; padding: 14px 18px 15px; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 22px rgba(0,0,0,.05); }
+.card .k { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 11px; letter-spacing: .05em; color: var(--muted); text-transform: uppercase; }
+.card .t { font-family: var(--serif); font-size: 27px; line-height: 1.18; margin-top: 7px; }
+.card .t b { font-weight: 600; }
+.card .m { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 8px; }
+.illus { font-family: var(--mono); font-size: 11px; color: var(--faint); left: 44px; bottom: 20px; }
+
+/* shot 2 network */
+.q { font-family: var(--mono); font-size: 16px; background: #efeee9; border-radius: 4px; padding: 12px 16px; width: 712px; line-height: 1.45; }
+.row { display: grid; grid-template-columns: 170px 1fr 210px; width: 712px; font-family: var(--mono); font-size: 19px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.row .p { color: var(--muted); }
+.st { position: relative; }
+.st span { position: absolute; left: 0; top: 0; white-space: nowrap; }
+.chk { color: var(--muted); }
+.ok { color: var(--green); font-weight: 500; }
+.no { color: var(--faint); }
+.hl { position: absolute; height: 3px; background: var(--green); transform-origin: left; animation: grow 650ms cubic-bezier(.2,.75,.2,1) var(--in) both, out 400ms ease var(--out, 999s) forwards; }
+@keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* shots 3-5 chat pieces, zoomed */
+.u { background: #efeee9; border-radius: 14px; padding: 11px 16px; font-size: 19px; line-height: 1.4; max-width: 600px; }
+.tool { width: 712px; background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 22px rgba(0,0,0,.04); }
+.tool .h { display: flex; gap: 10px; align-items: baseline; padding: 9px 16px; background: #f7f6f2; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: 15px; }
+.tool .h .n { color: var(--green); font-weight: 500; }
+.tool .h .g { color: var(--muted); font-size: 13px; }
+.tool .b { padding: 10px 16px 12px; font-family: var(--mono); font-size: 18px; line-height: 1.5; }
+.ln { position: relative; display: block; padding: 2px 8px; margin: 0 -8px; border-radius: 4px; color: #3a3934; }
+.ln.fade { animation: lnfade 500ms ease var(--fade) forwards; }
+@keyframes lnfade { to { color: var(--faint); } }
+.ln.mark { animation: mark 500ms ease var(--mark) forwards; }
+@keyframes mark { to { background: var(--green-soft); color: var(--green); } }
+.rc { font-family: var(--mono); font-size: 17px; color: var(--amber); background: var(--amber-soft); border: 1.5px dashed #d6b46e; border-radius: 8px; padding: 10px 14px; width: 712px; }
+.empty { color: var(--muted); font-style: italic; }
+
+/* end */
+.mark3 { display: inline-grid; grid-template-columns: repeat(3, 9px); gap: 5px; vertical-align: middle; margin-right: 16px; }
+.mark3 i { width: 9px; height: 9px; border-radius: 50%; background: var(--ink); }
+.mark3 i.g { background: var(--green); }
+.word { font-size: 52px; font-weight: 620; letter-spacing: -.02em; display: flex; align-items: center; }
+.foot { font-family: var(--mono); font-size: 10.5px; color: var(--faint); left: 44px; bottom: 18px; }
+</style>
+</head>
+<body>
+
+<!-- SHOT 1: why (0-4.2s) -->
+<div class="el cap" style="--in:150ms;--out:4100ms">
+  <div class="c1">Everyone researches the same things.</div>
+  <div class="c2">days of sessions, then it sits in a folder</div>
+</div>
+__CARDS__
+<div class="el illus" style="--in:600ms;--out:4100ms">illustrative</div>
+
+<!-- SHOT 2: network check (4.2-8.6s) -->
+<div class="el cap" style="--in:4300ms;--out:8500ms">
+  <div class="c1">It checks who already did the work.</div>
+  <div class="c2">3 published wikis · 1 confident match</div>
+</div>
+<div class="el q" style="left:44px;top:150px;--in:4600ms;--out:8500ms">__Q1SHORT__</div>
+__ROWS__
+
+<!-- SHOT 3: asks first (8.6-12.8s) -->
+<div class="el cap" style="--in:8700ms;--out:12700ms">
+  <div class="c1">It asks before it spends.</div>
+  <div class="c2">price up front · simulated USDC</div>
+</div>
+<div class="el u" style="left:156px;top:166px;--in:8900ms;--out:12700ms">__Q1SHORT__</div>
+<div class="el tool" style="left:44px;top:250px;--in:9600ms;--out:12700ms">
+  <div class="h"><span class="n">cloud_brain_search</span><span class="g">real response, trimmed</span></div>
+  <div class="b">
+    <span class="ln fade" style="--fade:10900ms">__S_FOUND__</span>
+    <span class="ln mark" style="--mark:10900ms">__S_PRICE__</span>
+    <span class="ln fade" style="--fade:10900ms">__S_TOPULL__</span>
+  </div>
+</div>
+
+<!-- SHOT 4: result (12.8-17.4s) -->
+<div class="el cap" style="--in:12900ms;--out:17300ms">
+  <div class="c1">$__PRICE__ instead of starting from zero.</div>
+  <div class="c2">3 cited pages · no real funds moved</div>
+</div>
+<div class="el tool" style="left:44px;top:166px;--in:13200ms;--out:17300ms">
+  <div class="h"><span class="n">cloud_brain_pull</span><span class="g">contributor: "kestrel" · trimmed</span></div>
+  <div class="b">
+    <span class="ln fade" style="--fade:15200ms">__P_HEAD__</span>
+    <span class="ln fade" style="--fade:15200ms">__P_S1__</span>
+    <span class="ln fade" style="--fade:15200ms">__P_S2__</span>
+    <span class="ln fade" style="--fade:15200ms">__P_S3__</span>
+  </div>
+</div>
+<div class="el rc" style="left:44px;top:374px;--in:14600ms;--out:17300ms">__RECEIPT__</div>
+
+<!-- SHOT 5: silence (17.4-20.6s) -->
+<div class="el cap" style="--in:17500ms;--out:20500ms">
+  <div class="c1">Nothing relevant? It stays quiet.</div>
+  <div class="c2">no weak matches · nothing charged</div>
+</div>
+<div class="el u" style="left:156px;top:166px;--in:17700ms;--out:20500ms">__Q3SHORT__</div>
+<div class="el tool" style="left:44px;top:262px;--in:18400ms;--out:20500ms">
+  <div class="h"><span class="n">cloud_brain_search</span><span class="g">real response</span></div>
+  <div class="b"><span class="ln empty">(empty result)</span></div>
+</div>
+
+<!-- SHOT 6: end (20.6-24s), fades to the first frame -->
+<div class="el" style="left:0;right:0;top:170px;display:flex;flex-direction:column;align-items:center;--in:20700ms;--out:23500ms">
+  <div class="word"><span class="mark3"><i></i><i class="g"></i><i></i><i></i><i></i><i class="g"></i><i></i><i class="g"></i><i></i></span>Cloud Brain</div>
+  <div style="font-size:30px;font-weight:640;letter-spacing:-.015em;margin-top:30px">Research has salvage value.</div>
+  <div style="font-family:var(--mono);font-size:15px;color:var(--muted);margin-top:14px">April 2026 prototype · MCP server · payments simulated</div>
+</div>
+
+<div class="el foot" style="--in:4300ms;--out:20500ms">tool responses: real output from the cloud-brain MCP server</div>
+
+<script>
+window.seek = (ms) => { for (const a of document.getAnimations()) { a.pause(); a.currentTime = ms; } };
+window.seek(0);
+</script>
+</body>
+</html>

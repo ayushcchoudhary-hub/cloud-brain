@@ -85,7 +85,13 @@ html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--b
 <div class="stage">
 
 <!-- ACT 1: the same research, over and over (illustrative) -->
-__CARDS__
+<div class="el dim card" style="left:90px;top:80px;--in:300ms;--dim:1400ms;--out:5800ms"><div class="k"><span>research session · @mara</span><span>Oct 2026</span></div><div class="t"><b>USDC vs PYUSD vs USDe</b> for a company treasury</div><div class="m">2 days · 3.8M tokens</div></div>
+<div class="el dim card" style="left:520px;top:50px;--in:920ms;--dim:2020ms;--out:5800ms"><div class="k"><span>research session · @jtan</span><span>Sep 2026</span></div><div class="t">Which stablecoins can a company <b>redeem at par</b>?</div><div class="m">3 days · 5.1M tokens</div></div>
+<div class="el dim card" style="left:850px;top:150px;--in:1540ms;--dim:2640ms;--out:5800ms"><div class="k"><span>research session · @devon</span><span>Oct 2026</span></div><div class="t"><b>GENIUS Act</b>: what changes for issuers in 2027</div><div class="m">1 day · 2.2M tokens</div></div>
+<div class="el dim card" style="left:150px;top:310px;--in:2160ms;--dim:3260ms;--out:5800ms"><div class="k"><span>research session · @priya</span><span>Aug 2026</span></div><div class="t">How does an <b>x402 payment</b> actually settle?</div><div class="m">2 days · 2.9M tokens</div></div>
+<div class="el dim card" style="left:560px;top:290px;--in:2780ms;--dim:3880ms;--out:5800ms"><div class="k"><span>research session · @lu</span><span>Oct 2026</span></div><div class="t">Stablecoin <b>reserve attestations</b>, compared</div><div class="m">2 days · 4.4M tokens</div></div>
+<div class="el dim card" style="left:860px;top:430px;--in:3400ms;--dim:4500ms;--out:5800ms"><div class="k"><span>research session · @sam</span><span>Nov 2026</span></div><div class="t">Is <b>USDe</b> safe for a corporate treasury?</div><div class="m">1 day · 1.7M tokens</div></div>
+<div class="el dim card" style="left:330px;top:510px;--in:4020ms;--dim:5120ms;--out:5800ms"><div class="k"><span>research session · @ola</span><span>Nov 2026</span></div><div class="t"><b>PYUSD vs USDC</b> redemption fees and timing</div><div class="m">2 days · 3.2M tokens</div></div>
 <div class="el illus" style="--in:900ms;--out:5800ms">illustrative</div>
 
 <div class="el" style="left:120px;top:300px;--in:6100ms;--out:9100ms">
@@ -109,10 +115,13 @@ __CARDS__
 
 <!-- ACT 3: the network -->
 <div class="el thead" style="left:255px;top:110px;--in:19100ms;--out:26600ms">Your agent checks the network first.</div>
-<div class="el query" style="left:255px;top:160px;--in:19400ms;--out:26600ms"><span class="lab">QUERY</span>__Q1__</div>
-__ROWS__
+<div class="el query" style="left:255px;top:160px;--in:19400ms;--out:26600ms"><span class="lab">QUERY</span>Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act.</div>
+<div class="el row" style="left:255px;top:268px;--in:20200ms;--out:26600ms"><span>kestrel</span><span class="p">stablecoin issuers compared</span><span class="p">6 pages</span><span class="st"><span class="el chk" style="--in:20400ms;--out:22300ms;--dy:0px">checking…</span><span class="el ok" style="--in:22600ms;--dy:0px">match · $4.05</span></span></div>
+<div class="el row" style="left:255px;top:312px;--in:20500ms;--out:26600ms"><span>otter (you)</span><span class="p">agent payments, x402</span><span class="p">5 pages</span><span class="st"><span class="el chk" style="--in:20700ms;--out:22420ms;--dy:0px">checking…</span><span class="el no" style="--in:22720ms;--dy:0px">no match</span></span></div>
+<div class="el row" style="left:255px;top:356px;--in:20800ms;--out:26600ms"><span>heron</span><span class="p">UK heat pump retrofit</span><span class="p">4 pages</span><span class="st"><span class="el chk" style="--in:21000ms;--out:22540ms;--dy:0px">checking…</span><span class="el no" style="--in:22840ms;--dy:0px">no match</span></span></div>
+<div class="hl" style="left:255px;top:303px;width:770px;--in:22900ms;--out:26600ms"></div>
 <div class="el" style="left:255px;top:500px;--in:23600ms;--out:26600ms;width:780px">
-  <div style="font-size:24px;font-weight:600;letter-spacing:-.01em">Kestrel already spent days on this. It costs $__PRICE__.</div>
+  <div style="font-size:24px;font-weight:600;letter-spacing:-.01em">Kestrel already spent days on this. It costs $4.05.</div>
 </div>
 
 <!-- ACT 4: the demo -->
@@ -125,19 +134,25 @@ __ROWS__
   <div class="c2">no new tab, no copy-paste</div>
 </div>
 <div class="el cap" style="left:60px;top:250px;--in:35300ms;--out:40100ms">
-  <div class="c1">$__PRICE__ instead of two days.</div>
+  <div class="c1">$4.05 instead of two days.</div>
   <div class="c2">simulated USDC · no real funds moved</div>
 </div>
 
 <div class="el win" style="--in:26900ms;--out:40100ms;--dy:24px">
   <div class="bar"><i></i><i></i><i></i><span class="tt">research session</span><span class="bd">mcp: cloud-brain</span></div>
-  <div class="viewport"><div class="feed" style="--scroll:33400ms;--sy:-__SCROLL__px">
-    <div class="el u" style="--in:27700ms">__Q1__</div>
-    <div class="el tool" style="--in:28900ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q1ARGS__</span></div><pre>__SEARCH__</pre></div>
-    <div class="el a" style="--in:30200ms">Kestrel has already compiled __PAGES__ on this. Pulling them costs $__PRICE__ USDC (simulated). Want me to pull them in?</div>
+  <div class="viewport"><div class="feed" style="--scroll:33400ms;--sy:-90px">
+    <div class="el u" style="--in:27700ms">Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act.</div>
+    <div class="el tool" style="--in:28900ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">query: &quot;Compare USDC, PYUSD and USDe for a company treasury holdin…&quot;</span></div><pre>Found compiled research from Kestrel. It covers Treasury Risk Comparison for a $5M Holding, Redemption Mechanics, Fees and Timing, and Reserve Models and Attestations.
+Price: $4.05 USDC (simulated). Ask the user before pulling.
+To pull: cloud_brain_pull with contributor &quot;kestrel&quot;.</pre></div>
+    <div class="el a" style="--in:30200ms">Kestrel has already compiled 3 pages on this. Pulling them costs $4.05 USDC (simulated). Want me to pull them in?</div>
     <div class="el u" style="--in:31500ms">yes, pull it in</div>
-    <div class="el tool clamp" style="--in:32300ms"><div class="h"><span class="n">cloud_brain_pull</span><span class="g">contributor: "kestrel"</span></div><pre>__PULL__</pre></div>
-    <div class="el rcpt" style="--in:34300ms">SIMULATED  $__PRICE__ USDC → Kestrel  ·  receipt __RID__  ·  no real funds moved</div>
+    <div class="el tool clamp" style="--in:32300ms"><div class="h"><span class="n">cloud_brain_pull</span><span class="g">contributor: "kestrel"</span></div><pre>Compiled research from Kestrel (3 pages):
+[S1] Treasury Risk Comparison for a $5M Holding: Side-by-side risk notes for a company holding about $5M in USDC, PYUSD, USDG, a Bridge-issued coin or USDe: depeg history, counterparty and custody exposure, chain support, and common setup patterns with their tradeoffs. Prices on DefiLlama on 7 November 2026: USDC 0.9998, PYUSD 0.9996, USDG 0.9999, USDe 0.9987.
+[S2] Redemption Mechanics, Fees and Timing: How a company actually turns each token back into bank dollars: who can redeem direct, what it costs on a $5M ticket, how long it takes, and what the OCC rule requires from 2027. A treasury holding USDe is effectively relying on market makers to keep the price near $1.
+[S3] Reserve Models and Attestations: What actually backs each token, who checks it, how often, and what the GENIUS Act and the OCC&#x27;s final rule will require from January 2027. Circle discloses holdings and mint and burn flows weekly, and a Big Four firm gives monthly assurance that reserves exceed USDC in circulation.
+Sources: treasury-risk-comparison.md, redemption-mechanics-and-fees.md, reserve-models-and-attestations.md</pre></div>
+    <div class="el rcpt" style="--in:34300ms">SIMULATED  $4.05 USDC → Kestrel  ·  receipt sim_dc8522b3cfae  ·  no real funds moved</div>
     <div class="el a" style="--in:35300ms">Short version from Kestrel's notes: Circle discloses USDC reserves weekly, with monthly Big Four assurance. A USDe treasury effectively relies on market makers to hold the $1 price. New OCC reserve rules start in January 2027. [S2] [S3]</div>
   </div></div>
 </div>
@@ -146,12 +161,13 @@ __ROWS__
 <div class="el" style="left:120px;top:200px;--in:40500ms;--out:44000ms">
   <div class="big" style="font-size:44px">Your own notes come first.<br>Those are free.</div>
 </div>
-<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:41100ms;--out:44000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q2ARGS__</span></div><pre>__OWN__</pre></div>
+<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:41100ms;--out:44000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">query: &quot;How should an agent decide whether to pay for a …&quot;</span></div><pre>Your own wiki covers this: Agent Spend Policy: When to Pay for a Tool Call or Context, x402: HTTP 402 Payments and How They Settle, and Agent Payment Landscape Beyond x402. Free.
+To pull: cloud_brain_pull with contributor &quot;otter&quot;.</pre></div>
 
 <div class="el" style="left:120px;top:200px;--in:44400ms;--out:48000ms">
   <div class="big" style="font-size:44px">Nothing worth buying?<br>It says nothing.</div>
 </div>
-<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:45000ms;--out:48000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">__Q3ARGS__</span></div><pre style="color:var(--muted)">(empty result · nothing charged)</pre></div>
+<div class="el tool mini" style="left:120px;top:350px;background:#fff;--in:45000ms;--out:48000ms"><div class="h"><span class="n">cloud_brain_search</span><span class="g">query: &quot;What does a seed-stage SaaS startup need to get …&quot;</span></div><pre style="color:var(--muted)">(empty result · nothing charged)</pre></div>
 
 <!-- END -->
 <div class="el" style="left:0;right:0;top:250px;display:flex;flex-direction:column;align-items:center;--in:48500ms">

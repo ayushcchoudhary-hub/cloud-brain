@@ -1,20 +1,22 @@
-# Rendering the README film
+# Rendering the README clip
 
-`film.template.html` is a single page with CSS animations. `build.py` fills it
-from `docs/demo-transcript.json`, seeks the animations frame by frame in
-headless Chrome, and writes an MP4 and a GIF.
+`clip.template.html` is one page with CSS animations, six shots, 24 seconds.
+`build.py` fills it from `docs/demo-transcript.json`, seeks the animations
+frame by frame in headless Chrome, and writes an MP4, a 16:9 version, a poster
+frame and the README GIF.
 
-What comes from the transcript, unchanged: the query, every tool response, the
-price, the receipt id and the page count. What is written by hand: the
-illustrative research-session cards at the start, the captions, the chat
-window and the assistant's lines. The network table shows the real match
-result for the demo query against the three sample wikis.
+From the transcript, word for word but trimmed to the lines that matter: the
+query, the search and pull responses, the price and the receipt. The network
+table shows the real match result for the demo query against the three sample
+wikis. Written by hand: the captions and the three research-session cards in
+the first shot, which are labelled "illustrative" on screen.
 
 ```sh
 cd docs/film
 npm install                      # fonts only
 pip install playwright           # plus Chrome or Chromium and ffmpeg
-python3 build.py ../demo-transcript.json ../images/cloud-brain-film
+python3 build.py ../demo-transcript.json out
+cp out/cloud-brain-clip.gif ../images/
 ```
 
 `build.py` expects Chrome at `/usr/bin/google-chrome`. Change

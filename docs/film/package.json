@@ -1,9 +1,9 @@
 {
-  "name": "cloud-brain-film",
+  "name": "cloud-brain-clip",
   "private": true,
-  "description": "Fonts for rendering the README film. Not part of the server.",
+  "description": "Fonts for rendering the README clip. Not part of the server.",
   "dependencies": {
     "@fontsource/jetbrains-mono": "^5.3.0",
-    "@fontsource/source-serif-4": "^5.3.0"
+    "@fontsource/source-serif-4": "^5.3.1"
   }
 }
