@@ -24,20 +24,27 @@ found = s_lines[0].split(". ")[0] + "."           # "Found compiled research fro
 price_line = next(l for l in s_lines if l.startswith("Price:"))
 to_pull = next(l for l in s_lines if l.startswith("To pull:"))
 p_lines = pull["response_text"].splitlines()
-cites = [l.split(":")[0] for l in p_lines if l.startswith("[S")][:3]  # "[S1] Page title"
+# "[S1] Page title": the full H1 of each cited page, read from the sample wiki
+wiki = here.parent.parent / "sample-wikis" / pull["args"]["contributor"] / "pages"
+src_files = next(l for l in p_lines if l.startswith("Sources:")).removeprefix("Sources:").split(",")
+cites = [f"[S{i + 1}] " + (wiki / f.strip()).read_text().splitlines()[0].lstrip("# ").strip() for i, f in enumerate(src_files[:3])]
 receipt = p_lines[-1]
 price = receipt.split("$")[1].split(" ")[0]
 
-cards = [("@mara", "Oct 2026", "<b>USDC vs PYUSD vs USDe</b> for a company treasury", "2 days · 3.8M tokens", 60, 140),
-         ("@jtan", "Sep 2026", "Which stablecoins can a company <b>redeem at par</b>?", "3 days · 5.1M tokens", 190, 262),
-         ("@ola", "Nov 2026", "<b>PYUSD vs USDC</b> redemption fees and timing", "2 days · 3.2M tokens", 300, 384)]
-cards_html = "".join(
-    f'<div class="el dim card" style="left:{x}px;top:{y}px;--in:{500 + i * 700}ms;--dim:{1300 + i * 700 if i < 2 else 99999}ms;--out:4100ms">'
-    f'<div class="k"><span>research session · {w}</span><span>{d}</span></div><div class="t">{t}</div><div class="m">{m}</div></div>'
-    for i, (w, d, t, m, x, y) in enumerate(cards))
+KESTREL_SHORT = "tanker shadow fleet"
+OTTER_SHORT = "FDA AI devices"
 
-rows = [("kestrel", "stablecoin issuers", f"match · ${price}", "ok"),
-        ("otter (you)", "agent payments", "no match", "no"),
+# Shot 1: illustrative research sessions on the same topic (no names, no dates)
+cards = [("How big is the <b>shadow tanker fleet</b>, really?", "2 days · 3.8M tokens", 60, 140),
+         ("Does the <b>oil price cap</b> still bite?", "3 days · 5.1M tokens", 190, 262),
+         ("Which <b>tanker sanctions</b> actually worked?", "2 days · 3.2M tokens", 300, 384)]
+cards_html = "".join(
+    f'<div class="el dim card" style="left:{x}px;top:{y}px;--in:{-700 if i == 0 else 300 + i * 700}ms;--dim:{1300 + i * 700 if i < 2 else 99999}ms;--out:4100ms">'
+    f'<div class="k"><span>illustrative research session</span></div><div class="t">{t}</div><div class="m">{m}</div></div>'
+    for i, (t, m, x, y) in enumerate(cards))
+
+rows = [("kestrel", KESTREL_SHORT, f"match · ${price}", "ok"),
+        ("otter (you)", OTTER_SHORT, "no match", "no"),
         ("heron", "UK heat pumps", "no match", "no")]
 rows_html = ""
 for i, (h, topic, res, cls) in enumerate(rows):

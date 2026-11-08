@@ -32,7 +32,7 @@ html, body { width: 800px; height: 550px; overflow: hidden; background: var(--bg
 .card .t { font-family: var(--serif); font-size: 27px; line-height: 1.18; margin-top: 7px; }
 .card .t b { font-weight: 600; }
 .card .m { font-family: var(--mono); font-size: 13px; color: var(--muted); margin-top: 8px; }
-.illus { font-family: var(--mono); font-size: 11px; color: var(--faint); left: 44px; bottom: 20px; }
+.illus { font-family: var(--mono); font-size: 13px; color: var(--muted); left: 44px; bottom: 22px; }
 
 /* shot 2 network */
 .q { font-family: var(--mono); font-size: 16px; background: #efeee9; border-radius: 4px; padding: 12px 16px; width: 712px; line-height: 1.45; }
@@ -72,12 +72,12 @@ html, body { width: 800px; height: 550px; overflow: hidden; background: var(--bg
 <body>
 
 <!-- SHOT 1: why (0-4.2s) -->
-<div class="el cap" style="--in:150ms;--out:4100ms">
+<div class="el cap" style="--in:-700ms;--out:4100ms">
   <div class="c1">Everyone researches the same things.</div>
   <div class="c2">days of sessions, then it sits in a folder</div>
 </div>
 __CARDS__
-<div class="el illus" style="--in:600ms;--out:4100ms">illustrative</div>
+<div class="el illus" style="--in:-700ms;--out:4100ms">illustrative sessions, not real users</div>
 
 <!-- SHOT 2: network check (4.2-8.6s) -->
 <div class="el cap" style="--in:4300ms;--out:8500ms">
@@ -116,7 +116,7 @@ __ROWS__
     <span class="ln fade" style="--fade:15200ms">__P_S3__</span>
   </div>
 </div>
-<div class="el rc" style="left:44px;top:374px;--in:14600ms;--out:17300ms">__RECEIPT__</div>
+<div class="el rc" style="left:44px;top:408px;--in:14600ms;--out:17300ms">__RECEIPT__</div>
 
 <!-- SHOT 5: silence (17.4-20.6s) -->
 <div class="el cap" style="--in:17500ms;--out:20500ms">

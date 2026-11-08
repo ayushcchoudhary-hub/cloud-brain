@@ -39,7 +39,9 @@ const envSchema = z.object({
   EMBED_MODEL: z.string().default("text-embedding-3-large"),
   SUPABASE_URL: z.string().url().optional(),
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional(),
-  OPENAI_API_KEY: z.string().optional()
+  OPENAI_API_KEY: z.string().optional(),
+  /** Makes receipt ids repeatable, so `npm run demo` prints the same ids every run. */
+  RECEIPT_SEED: z.string().optional()
 });
 
 export interface Config {
@@ -55,6 +57,7 @@ export interface Config {
   embedModel: string;
   thresholds: ScoreThresholds;
   supabase?: { url: string; serviceRoleKey: string };
+  receiptSeed?: string;
 }
 
 export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
@@ -86,6 +89,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): Config {
     supabase:
       e.SUPABASE_URL && e.SUPABASE_SERVICE_ROLE_KEY
         ? { url: e.SUPABASE_URL, serviceRoleKey: e.SUPABASE_SERVICE_ROLE_KEY }
-        : undefined
+        : undefined,
+    receiptSeed: e.RECEIPT_SEED
   };
 }

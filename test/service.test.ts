@@ -75,3 +75,16 @@ test("quote then settle charges the quoted amount once", async () => {
   if (settled.status === "delivered") assert.equal(settled.receipt?.amountUsdc, quote.amountUsdc);
   assert.equal((await service.settleQuote(quote.id)).status, "quote_invalid");
 });
+
+test("a receipt seed makes receipt ids repeatable, without one they differ", async () => {
+  const pullOnce = async (env: Record<string, string>) => {
+    const { service } = await sampleService(env);
+    const outcome = await service.pull(STORY.network, { contributorHandle: "kestrel" });
+    assert.equal(outcome.status, "delivered");
+    return outcome.status === "delivered" ? outcome.receipt?.receiptId : undefined;
+  };
+  const a = await pullOnce({ RECEIPT_SEED: "seed" });
+  assert.match(a ?? "", /^sim_[0-9a-f]{12}$/);
+  assert.equal(await pullOnce({ RECEIPT_SEED: "seed" }), a);
+  assert.notEqual(await pullOnce({}), await pullOnce({}));
+});

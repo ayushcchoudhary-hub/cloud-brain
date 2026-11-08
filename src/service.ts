@@ -1,4 +1,4 @@
-import { randomBytes, randomUUID } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
 
 import type { Config } from "./config.js";
 import { evaluatePull } from "./eval.js";
@@ -82,9 +82,16 @@ export interface PullOptions {
   maxPriceUsdc?: number;
 }
 
-const newReceiptId = () => `sim_${randomBytes(6).toString("hex")}`;
+/** Random receipt ids, or repeatable ones when a seed is configured (used by the demo). */
+function receiptIds(seed?: string): () => string {
+  let n = 0;
+  return seed
+    ? () => `sim_${createHash("sha256").update(`${seed}:${n++}`).digest("hex").slice(0, 12)}`
+    : () => `sim_${randomBytes(6).toString("hex")}`;
+}
 
 export function createService(store: Store, config: Config): CloudBrainService {
+  const newReceiptId = receiptIds(config.receiptSeed);
   const t = config.thresholds;
 
   async function publish(handle: string, displayName: string, pages: WikiPage[]): Promise<PublishResult> {

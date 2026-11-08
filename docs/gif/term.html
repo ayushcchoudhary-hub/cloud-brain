@@ -6,12 +6,12 @@ html,body{margin:0;background:#1b1b19}
 #o{flex:1;padding:12px 18px;white-space:pre;overflow:hidden}
 .p{color:#7fb59f}.call{color:#9fc6e8}.resp{color:#e7e5dd}.user{color:#e3c27d}.h{color:#fff;font-weight:600}.dim{color:#8b897f}.sim{color:#e3c27d}
 .c::after{content:"▍";color:#8b897f}
-</style></head><body><div class="w"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">cloud-brain: npm run demo</span></div><div id="o"></div></div>
+</style></head><body><div class="w"><div class="bar"><span class="d"></span><span class="d"></span><span class="d"></span><span class="t">cloud-brain: npm run demo</span></div><div id="o"><div class="p">$ npm run demo</div></div></div>
 <script>
 const o=document.getElementById('o'),sleep=ms=>new Promise(r=>setTimeout(r,ms));
 function cls(l){if(/^\s*>/.test(l))return'call';if(/^\s*</.test(l))return /SIMULATED|Not pulled/.test(l)?'sim':'resp';if(/^\s*user:/.test(l))return'user';if(/^\d\./.test(l)||/^Cloud Brain demo/.test(l))return'h';return'dim'}
 function add(t,c){const d=document.createElement('div');d.className=c;d.textContent=t||' ';o.appendChild(d);while(o.scrollHeight>o.clientHeight)o.removeChild(o.firstChild);return d}
-async function run(){const cmd=add('','p c');const s='$ npm run demo';for(let i=1;i<=s.length;i++){cmd.textContent=s.slice(0,i);await sleep(60)}cmd.className='p';await sleep(500);
+async function run(){await sleep(700);
 for(const l of window.SCRIPT){add(l,cls(l));await sleep(/^\d\./.test(l)?900:(/^\s*</.test(l)?260:(l.trim()?380:120)))}await sleep(1500);window.DONE=true}
-addEventListener('load',()=>setTimeout(run,300));
+addEventListener('load',()=>run());
 </script></body></html>

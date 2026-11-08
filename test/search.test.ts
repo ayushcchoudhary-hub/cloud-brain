@@ -43,11 +43,11 @@ test("story 3: off-topic question gets no match at all", async () => {
   assert.equal(await service.findMatch(STORY.nothing), null);
 });
 
-test("story 4: the reserve-yield question matches kestrel's yield page", async () => {
+test("story 4: the price-cap question matches kestrel's price-cap page", async () => {
   const { service } = await sampleService();
   const match = await service.findMatch(STORY.budget);
   assert.equal(match?.top.contributorHandle, "kestrel");
-  assert.equal(match?.top.pagePath, "pages/yield-and-distribution-economics.md");
+  assert.equal(match?.top.pagePath, "pages/price-cap-and-insurance.md");
 });
 
 test("a far-away wiki only answers its own topic", async () => {

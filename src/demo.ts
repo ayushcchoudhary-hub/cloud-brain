@@ -17,10 +17,10 @@ import { bootstrap } from "./store/index.js";
 
 const WIDTH = 96;
 const QUERIES = {
-  network: "Compare USDC, PYUSD and USDe for a company treasury holding $5M: reserve model, redemption path and fees, and regulatory exposure under the GENIUS Act.",
-  own: "How should an agent decide whether to pay for a tool call mid-task, and how does an x402 payment actually settle on-chain?",
+  network: "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has actually worked since 2024?",
+  own: "What FDA pathway would an AI triage tool for chest X-rays most likely use, and what can a PCCP let us change after clearance?",
   nothing: "What does a seed-stage SaaS startup need to get SOC 2 Type I ready: which policies, which tooling, and how long does the auditor's observation window take?",
-  budget: "Who keeps the reserve yield on USDC, PYUSD and USDG, and what is the GENIUS Act position on stablecoin rewards programs?"
+  budget: "Where is the EU price cap on Russian crude now, how does the dynamic mechanism set it, and what do service providers have to collect under the attestation rules?"
 };
 
 type Event =
@@ -104,7 +104,8 @@ async function main(): Promise<void> {
     WIKI_DIR: path.join(REPO_ROOT, "sample-wikis"),
     OWN_HANDLE: "otter",
     SYNTH_MODE: "extractive",
-    MONTHLY_BUDGET_USDC: "5"
+    MONTHLY_BUDGET_USDC: "5",
+    RECEIPT_SEED: "cloud-brain-demo"
   });
   const { service, loaded } = await bootstrap(config);
   const [clientSide, serverSide] = InMemoryTransport.createLinkedPair();
@@ -137,7 +138,7 @@ async function main(): Promise<void> {
   note(s3, "agent carries on with normal research. nothing charged.");
 
   const s4 = step("4. Budget guardrail");
-  say(s4, "now pull Kestrel's notes on who keeps the reserve yield");
+  say(s4, "now pull Kestrel's notes on the EU price cap mechanism");
   await call(client, s4, "cloud_brain_pull", { query: QUERIES.budget, contributor: "kestrel" }, "contributor=kestrel");
 
   console.log(`\n${dim("Every < line is a real MCP tool response. No real money moved.")}`);
