@@ -23,9 +23,9 @@ export async function sampleService(env: Record<string, string> = {}) {
 
 /** The demo story queries. src/demo.ts runs the same questions. */
 export const STORY = {
-  network: "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has actually worked since 2024?",
-  own: "What FDA pathway would an AI triage tool for chest X-rays most likely use, and what can a PCCP let us change after clearance?",
+  network: "I'm preparing a briefing for a Baltic port authority. Research the shadow tanker fleet that carries Russian crude: how many vessels and barrels it moves, how ships get around the price cap and insurance rules, which sanctions and inspections since 2024 actually changed behaviour, and what the spill risk looks like for coastal states.",
+  own: "We're building an AI triage tool for chest X-rays. Work out which FDA pathway it would most likely use, what clinical evidence reviewers expect, and what a PCCP would let us change after clearance without a new submission.",
   nothing: "What does a seed-stage SaaS startup need to get SOC 2 Type I ready: which policies, which tooling, and how long does the auditor's observation window take?",
-  budget: "Where is the EU price cap on Russian crude now, how does the dynamic mechanism set it, and what do service providers have to collect under the attestation rules?",
+  budget: "Also research the EU price cap on Russian crude: where it sits now, how the dynamic mechanism resets it, and what service providers have to collect under the attestation rules.",
   heatPump: "How big a heat pump does a Victorian terraced house need, and what does the Boiler Upgrade Scheme pay towards it?"
 };

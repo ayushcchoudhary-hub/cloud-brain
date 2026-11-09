@@ -15,10 +15,11 @@ and shelved it soon after. I cleaned it up and published it here in November
 stablecoin micropayments between agents. Payments are simulated: there is no
 wallet and nothing touches a chain.
 
-![A 24-second clip: the network check finds compiled research, the agent asks before paying, pulls three cited pages with a simulated receipt, and stays quiet when nothing matches](docs/images/cloud-brain-clip.gif)
+![A 25-second clip: your agent checks a global network of research wikis, finds a match in Singapore, asks before paying, pulls three cited pages with a simulated receipt, and stays quiet when nothing matches](docs/images/cloud-brain-clip.gif)
 
-The cards in the first shot are illustrative. The query, the tool responses,
-the price and the receipt are real output from this server, trimmed to the
+The research-session cards and the grey dots on the map are illustrative, and
+the contributors are fictional people. The query, the tool responses, the price
+and the receipt are real output from this server, trimmed to the
 lines that matter. The full responses are in
 [docs/demo-transcript.json](docs/demo-transcript.json), and `npm run demo`
 prints the same output, receipt ids included. The clip is rebuilt from
@@ -28,8 +29,8 @@ prints the same output, receipt ids included. The clip is rebuilt from
 
 | Step | What happens | Why it matters |
 |---|---|---|
-| 1 | "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has worked?" Another contributor has compiled 6 pages on this. The agent asks, then pulls 3 cited pages for a simulated $3.84 | Someone else's compiled research, inside the session, for a few dollars |
-| 2 | "What FDA pathway would an AI triage tool for chest X-rays use, and what can a PCCP let us change after clearance?" Your own wiki covers it | Your own notes come first and cost nothing |
+| 1 | "I'm preparing a briefing for a Baltic port authority. Research the shadow tanker fleet that carries Russian crude: how many vessels and barrels it moves, how ships get around the price cap and insurance rules, which sanctions since 2024 changed behaviour, and the spill risk for coastal states." Mei Ong in Singapore has compiled 6 pages on this. The agent asks, then pulls 3 cited pages for a simulated $4.00 | Someone else's compiled research, inside the session, for a few dollars |
+| 2 | "We're building an AI triage tool for chest X-rays. Work out which FDA pathway it would most likely use, what clinical evidence reviewers expect, and what a PCCP would let us change after clearance." Your own wiki covers it | Your own notes come first and cost nothing |
 | 3 | "What does a seed-stage startup need for SOC 2?" Nobody covered it | The server returns nothing. No weak matches, no charge |
 | 4 | A second paid pull would go over the $5 monthly budget | Spend limits are enforced in code, not left to the model |
 
@@ -133,11 +134,12 @@ are still there, behind `CLOUD_BRAIN_MARKETPLACE=true`.
 ## Run it yourself
 
 Needs Node.js 22. No API keys, no database. It runs in memory on three
-fictional [sample wikis](sample-wikis/README.md), compiled from public sources:
+[sample wikis](sample-wikis/README.md) compiled from public sources. The people
+are fictional:
 
-- **Kestrel**: the shadow tanker fleet carrying Russian crude (someone else's wiki)
-- **Otter**: FDA pathways for AI-enabled medical devices (treated as your own wiki)
-- **Heron**: UK heat pump retrofit (far away on purpose, so most questions miss it)
+- **Mei Ong, Singapore** (`kestrel`): the shadow tanker fleet carrying Russian crude (someone else's wiki)
+- **You** (`otter`): FDA pathways for AI-enabled medical devices (treated as your own wiki)
+- **Tom Ashby, Bristol** (`heron`): UK heat pump retrofit (far away on purpose, so most questions miss it)
 
 ```sh
 npm install
@@ -162,7 +164,8 @@ restart:
 ```
 
 To point it at your own markdown, set `WIKI_DIR` to a folder with one subfolder
-per contributor and `OWN_HANDLE` to yours. See [.env.example](.env.example).
+per contributor and `OWN_HANDLE` to yours. An optional `contributor.json` in
+each subfolder sets the name and location shown to buyers. See [.env.example](.env.example).
 
 ## What is real and what is simulated
 

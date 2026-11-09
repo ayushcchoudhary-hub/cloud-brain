@@ -17,10 +17,10 @@ import { bootstrap } from "./store/index.js";
 
 const WIDTH = 96;
 const QUERIES = {
-  network: "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has actually worked since 2024?",
-  own: "What FDA pathway would an AI triage tool for chest X-rays most likely use, and what can a PCCP let us change after clearance?",
+  network: "I'm preparing a briefing for a Baltic port authority. Research the shadow tanker fleet that carries Russian crude: how many vessels and barrels it moves, how ships get around the price cap and insurance rules, which sanctions and inspections since 2024 actually changed behaviour, and what the spill risk looks like for coastal states.",
+  own: "We're building an AI triage tool for chest X-rays. Work out which FDA pathway it would most likely use, what clinical evidence reviewers expect, and what a PCCP would let us change after clearance without a new submission.",
   nothing: "What does a seed-stage SaaS startup need to get SOC 2 Type I ready: which policies, which tooling, and how long does the auditor's observation window take?",
-  budget: "Where is the EU price cap on Russian crude now, how does the dynamic mechanism set it, and what do service providers have to collect under the attestation rules?"
+  budget: "Also research the EU price cap on Russian crude: where it sits now, how the dynamic mechanism resets it, and what service providers have to collect under the attestation rules."
 };
 
 type Event =
@@ -115,9 +115,13 @@ async function main(): Promise<void> {
 
   console.log(bold("Cloud Brain demo") + "  (in-memory, no keys, payments SIMULATED in USDC)");
   const wikis = loaded
-    .map((l) => `${l.contributor.handle} (${l.published} pages${l.contributor.handle === config.ownHandle ? ", yours" : ""})`)
-    .join(", ");
-  console.log(`  wikis (fictional contributors): ${wikis}`);
+    .map((l) =>
+      l.contributor.handle === config.ownHandle
+        ? `your own wiki (${l.published} pages)`
+        : `${l.contributor.displayName} (${l.published} pages)`
+    )
+    .join(" · ");
+  console.log(`  published wikis (fictional people): ${wikis}`);
   console.log(`  demo budget: $${config.limits.monthlyBudgetUsdc.toFixed(2)} USDC per month`);
 
   const s1 = step("1. Someone else already did this research");
@@ -138,7 +142,7 @@ async function main(): Promise<void> {
   note(s3, "agent carries on with normal research. nothing charged.");
 
   const s4 = step("4. Budget guardrail");
-  say(s4, "now pull Kestrel's notes on the EU price cap mechanism");
+  say(s4, "now pull Mei's notes on the EU price cap mechanism");
   await call(client, s4, "cloud_brain_pull", { query: QUERIES.budget, contributor: "kestrel" }, "contributor=kestrel");
 
   console.log(`\n${dim("Every < line is a real MCP tool response. No real money moved.")}`);

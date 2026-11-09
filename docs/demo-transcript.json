@@ -24,9 +24,9 @@
           "kind": "tool",
           "tool": "cloud_brain_search",
           "args": {
-            "query": "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has actually worked since 2024?"
+            "query": "I'm preparing a briefing for a Baltic port authority. Research the shadow tanker fleet that carries Russian crude: how many vessels and barrels it moves, how ships get around the price cap and insurance rules, which sanctions and inspections since 2024 actually changed behaviour, and what the spill risk looks like for coastal states."
           },
-          "response_text": "Found compiled research from Kestrel. It covers Shadow Fleet Size Estimates: How Many Tankers, How Much Oil, The Oil Price Cap, Attestations and Insurance, and Enforcement: Vessel Designations, Inspections and Boardings.\nPrice: $3.84 USDC (simulated). Ask the user before pulling.\nTo pull: cloud_brain_pull with contributor \"kestrel\".",
+          "response_text": "Found compiled research from Mei Ong, Singapore. It covers Safety and Environmental Risk: Old Ships, Thin Cover, Real Incidents, Enforcement: Vessel Designations, Inspections and Boardings, and How the Shadow Fleet Operates: Transfers, AIS Gaps and Flags.\nPrice: $4.00 USDC (simulated). Ask the user before pulling.\nTo pull: cloud_brain_pull with contributor \"kestrel\".",
           "is_error": false
         },
         {
@@ -37,10 +37,10 @@
           "kind": "tool",
           "tool": "cloud_brain_pull",
           "args": {
-            "query": "How big is the shadow tanker fleet carrying Russian crude, how does it avoid the price cap, and what enforcement has actually worked since 2024?",
+            "query": "I'm preparing a briefing for a Baltic port authority. Research the shadow tanker fleet that carries Russian crude: how many vessels and barrels it moves, how ships get around the price cap and insurance rules, which sanctions and inspections since 2024 actually changed behaviour, and what the spill risk looks like for coastal states.",
             "contributor": "kestrel"
           },
-          "response_text": "Compiled research from Kestrel (3 pages):\n[S1] Shadow Fleet Size Estimates: How Many Tankers, How Much Oil: How big the shadow tanker fleet is according to S&P Global, Lloyd's List Intelligence, KSE Institute and CREA, why their numbers differ so much, and what share of Russian seaborne crude it carries. For scale, market estimates put the non-sanctioned global crude and fuel tanker fleet at about 9,000 vessels.\n[S2] The Oil Price Cap, Attestations and Insurance: How the G7/EU price cap on Russian seaborne oil works, how its level moved from $60 to $47.60 to $44.10, the attestation regime, and why insurance defines the shadow fleet. In June 2026, KSE counted 48 tankers with Russian insurance in the shadow fleet.\n[S3] Enforcement: Vessel Designations, Inspections and Boardings: What the EU, UK and US have actually done to the shadow fleet since 2024: package-by-package vessel listings, the big US actions, Danish straits checks, boardings at sea, and which outcomes analysts can measure. In September 2026, sanctioned shadow tankers carried 67% of Russian crude (CREA).\nSources: shadow-fleet-size-estimates.md, price-cap-and-insurance.md, sanctions-enforcement.md\nSIMULATED payment: $3.84 USDC to Kestrel. Receipt sim_4fbb6d1f83b3. No real funds moved.",
+          "response_text": "Compiled research from Mei Ong, Singapore (3 pages):\n[S1] Safety and Environmental Risk: Old Ships, Thin Cover, Real Incidents: The age profile of shadow tankers, the gap in liability insurance, the cost a spill could push onto coastal states, and two incidents often cited in this debate: the Eagle S cable damage case and the December 2024 Kerch Strait spill. Stated as reported. Of the 48 Russian-insured shadow tankers KSE tracked in June 2026, 42 were themselves under sanctions (see price-cap-and-insurance).\n[S2] Enforcement: Vessel Designations, Inspections and Boardings: What the EU, UK and US have actually done to the shadow fleet since 2024: package-by-package vessel listings, the big US actions, Danish straits checks, boardings at sea, and which outcomes analysts can measure. In February 2025 it said the Danish Maritime Authority would carry out port state control checks on ships anchored off Skagen that \"cannot be considered in innocent passage\", with tankers prioritised.\n[S3] How the Shadow Fleet Operates: Transfers, AIS Gaps and Flags: The operating playbook as described by regulators and trackers: ship-to-ship transfers, switching off or spoofing AIS, false and fraudulent flags, opaque ownership, and how those patterns shifted in 2025 and 2026. A shadow tanker moves oil without the Western services that the price cap controls: G7+ ownership, management, flags and P&I insurance (see price-cap-and-insurance).\nSources: safety-and-environmental-risk.md, sanctions-enforcement.md, how-the-shadow-fleet-operates.md\nSIMULATED payment: $4.00 USDC to Mei Ong, Singapore. Receipt sim_4fbb6d1f83b3. No real funds moved.",
           "is_error": false
         },
         {
@@ -51,7 +51,7 @@
             "useful": true,
             "rating": 5
           },
-          "response_text": "Feedback saved for sim_4fbb6d1f83b3 (useful, 5/5). Kestrel's reputation: 3.00 -> 3.09 of 5.",
+          "response_text": "Feedback saved for sim_4fbb6d1f83b3 (useful, 5/5). Reputation of Mei Ong, Singapore: 3.00 -> 3.09 of 5.",
           "is_error": false
         }
       ]
@@ -63,9 +63,9 @@
           "kind": "tool",
           "tool": "cloud_brain_search",
           "args": {
-            "query": "What FDA pathway would an AI triage tool for chest X-rays most likely use, and what can a PCCP let us change after clearance?"
+            "query": "We're building an AI triage tool for chest X-rays. Work out which FDA pathway it would most likely use, what clinical evidence reviewers expect, and what a PCCP would let us change after clearance without a new submission."
           },
-          "response_text": "Your own wiki covers this: FDA Pathways for AI-Enabled Medical Devices and Predetermined Change Control Plans (PCCPs). Free.\nTo pull: cloud_brain_pull with contributor \"otter\".",
+          "response_text": "Your own wiki covers this: Predetermined Change Control Plans (PCCPs), FDA Pathways for AI-Enabled Medical Devices, and Clinical Evidence and Validation Expectations. Free.\nTo pull: cloud_brain_pull with contributor \"otter\".",
           "is_error": false
         }
       ]
@@ -93,16 +93,16 @@
       "events": [
         {
           "kind": "user",
-          "text": "now pull Kestrel's notes on the EU price cap mechanism"
+          "text": "now pull Mei's notes on the EU price cap mechanism"
         },
         {
           "kind": "tool",
           "tool": "cloud_brain_pull",
           "args": {
-            "query": "Where is the EU price cap on Russian crude now, how does the dynamic mechanism set it, and what do service providers have to collect under the attestation rules?",
+            "query": "Also research the EU price cap on Russian crude: where it sits now, how the dynamic mechanism resets it, and what service providers have to collect under the attestation rules.",
             "contributor": "kestrel"
           },
-          "response_text": "Not pulled. Monthly spend would reach $7.93, over the $5.00 budget. Nothing was charged.",
+          "response_text": "Not pulled. Monthly spend would reach $8.09, over the $5.00 budget. Nothing was charged.",
           "is_error": false
         }
       ]

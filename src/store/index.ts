@@ -1,4 +1,4 @@
-import { readdir } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 import type { Config } from "../config.js";
@@ -18,13 +18,28 @@ export async function createStore(config: Config): Promise<Store> {
 
 export const displayNameFor = (handle: string) => handle.charAt(0).toUpperCase() + handle.slice(1);
 
+/**
+ * A wiki folder may carry a `contributor.json` like `{ "name": "Mei Ong", "location": "Singapore" }`.
+ * The display name becomes "Mei Ong, Singapore". Without the file, the folder name is used.
+ */
+async function contributorName(folder: string, handle: string): Promise<string> {
+  try {
+    const meta = JSON.parse(await readFile(path.join(folder, "contributor.json"), "utf8")) as { name?: string; location?: string };
+    if (!meta.name) return displayNameFor(handle);
+    return meta.location ? `${meta.name}, ${meta.location}` : meta.name;
+  } catch {
+    return displayNameFor(handle);
+  }
+}
+
 /** Publish every subfolder of `wikiDir` as one contributor whose handle is the folder name. */
 export async function loadWikiFolders(service: CloudBrainService, wikiDir: string): Promise<PublishResult[]> {
   const entries = await readdir(wikiDir, { withFileTypes: true });
   const results: PublishResult[] = [];
   for (const entry of entries.filter((e) => e.isDirectory()).sort((a, b) => a.name.localeCompare(b.name))) {
-    const pages = await parseWiki(path.join(wikiDir, entry.name));
-    results.push(await service.publish(entry.name, displayNameFor(entry.name), pages));
+    const folder = path.join(wikiDir, entry.name);
+    const pages = await parseWiki(folder);
+    results.push(await service.publish(entry.name, await contributorName(folder, entry.name), pages));
   }
   return results;
 }
